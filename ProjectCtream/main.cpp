@@ -20,7 +20,9 @@ struct Employee {
     string firstName;
     string lastName;
     CareerLevel cl;
-    string phoneNum;
+    string frontOfPhoneNum;
+    string middleOfPhoneNum;
+    string backOfPhoneNum;
     unsigned int yearOfBday;
     unsigned int monthOfBday;
     unsigned int dateOfBday;
