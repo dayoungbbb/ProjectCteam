@@ -1,3 +1,4 @@
+#include <iostream>
 #include <vector>
 #include <string>
 using namespace std;
@@ -31,7 +32,13 @@ struct Employee {
 
 vector<Employee> dataBase;
 
+void search()
+{
+    cout << "Search" << endl;
+}
+
 int main()
 {
+    search();
     return 0;
 }
