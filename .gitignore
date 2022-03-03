@@ -1,0 +1,9 @@
+/ProjectCtream/x64
+/.vs
+/ProjectCteamTest/x64
+/ProjectCtream/packages
+/ProjectCtream/.vs
+/.gitignore
+/ProjectCtream/*.vcxproj
+/ProjectCtream/ProjectCtream.vcxproj.filters
+/ProjectCteamTest/*.vcxproj
