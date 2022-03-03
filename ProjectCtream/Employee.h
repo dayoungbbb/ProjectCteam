@@ -33,4 +33,15 @@ struct Employee {
     string certi;
 };
 
+struct Parser {
+    string op1;
+    string op2;
+    string col1;
+    string col2;
+    string col3;
+    string col4;
+    string col5;
+    string col6;
+};
+
 vector<Employee> dataBase;
