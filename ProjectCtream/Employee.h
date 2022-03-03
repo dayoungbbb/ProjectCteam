@@ -17,8 +17,8 @@ enum CertiLevel {
     EXP = 2
 };
 
-string clString[4] = { "CL1", "CL2", "CL3", "CL4" };
-string certiString[3] = { "ADV", "PRO", "EXP" };
+static string clString[4] = { "CL1", "CL2", "CL3", "CL4" };
+static string certiString[3] = { "ADV", "PRO", "EXP" };
 
 struct Employee {
     string employeeNum;
@@ -33,4 +33,4 @@ struct Employee {
     string certi;
 };
 
-vector<Employee> dataBase;
+static vector<Employee> dataBase;
