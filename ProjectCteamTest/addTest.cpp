@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "../ProjectCtream/add.cpp"
 
-TEST(ParseTest, parseTest) {
+TEST(AddTest, parseTest) {
     vector<string> parseStr = split(string("ADD, , , ,18050301,KYUMOK KIM,CL2,010-9777-6055,19980906,PRO"), ',');
     Parser parser = getParser(parseStr);
     EXPECT_EQ(parser.col1, "18050301");
