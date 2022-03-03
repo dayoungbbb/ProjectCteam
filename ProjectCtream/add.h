@@ -1,5 +1,7 @@
+#pragma once
 #include "Employee.h"
 #include <sstream>
+#include <stdexcept>
 
 Parser getParser(vector<string> parseStr);
 

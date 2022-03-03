@@ -22,13 +22,16 @@ Parser getParser(vector<string> parseStr) {
         parser.col1 = parseStr[4];
         parser.col2 = parseStr[5];
     }
-    else {
+    else if (parseStr[0] == "MOD") {
         parser.op1 = parseStr[1];
         parser.op2 = parseStr[2];
         parser.col1 = parseStr[4];
         parser.col2 = parseStr[5];
         parser.col3 = parseStr[6];
         parser.col4 = parseStr[7];
+    }
+    else {
+        throw invalid_argument("invalid command");
     }
     return parser;
 }
