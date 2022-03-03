@@ -2,6 +2,8 @@
 #include <vector>
 #include <string>
 
+using namespace std;
+
 enum CareerLevel {
     CL1 = 0,
     CL2 = 1,
@@ -15,18 +17,20 @@ enum CertiLevel {
     EXP = 2
 };
 
+string clString[4] = { "CL1", "CL2", "CL3", "CL4" };
+string certiString[3] = { "ADV", "PRO", "EXP" };
+
 struct Employee {
-    unsigned int employeeNum;
+    string employeeNum;
     string firstName;
     string lastName;
-    CareerLevel cl;
-    string frontOfPhoneNum;
+    string cl;
     string middleOfPhoneNum;
     string backOfPhoneNum;
-    unsigned int yearOfBday;
-    unsigned int monthOfBday;
-    unsigned int dateOfBday;
-    CertiLevel certi;
+    string yearOfBday;
+    string monthOfBday;
+    string dateOfBday;
+    string certi;
 };
 
 vector<Employee> dataBase;
