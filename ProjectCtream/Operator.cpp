@@ -18,7 +18,7 @@ void ModOperator::operate(priority_queue<vector<Employee>::iterator>& searchQ, C
         vector<Employee>::iterator iter = searchQ.top();
 
         if (cmdString.col3 == "employeeNum") {
-            iter->employeeNum = cmdString.col4;
+            throw invalid_argument("사원번호는 바꿀 수 없습니다");
         }
         else if (cmdString.col3 == "name") {
             parseName(cmdString.col4, iter->firstName, iter->lastName);

@@ -58,10 +58,15 @@ TEST_F(OperatorTest, ModTest) {
 
 	EXPECT_TRUE(answer == result);
 
-	//예외 확인
+	/* 예외 확인 */
 	searchQ.push(dataBase.begin());
 	changeInfo.col3 = "cll";
 	changeInfo.col4 = "CL3";
+	EXPECT_THROW(modOperator->operate(searchQ, changeInfo), invalid_argument);
+
+	searchQ.push(dataBase.begin());
+	changeInfo.col3 = "employeeNum";
+	changeInfo.col4 = "75249568";
 	EXPECT_THROW(modOperator->operate(searchQ, changeInfo), invalid_argument);
 }
 
