@@ -1,7 +1,7 @@
 #include "Searcher.h"
-priority_queue<employeeIter, vector<employeeIter>, cmp> EmployeeNumSearcher::search(const CmdString& cmdString) const
+prioirtyQ EmployeeNumSearcher::search(const CmdString& cmdString) const
 {
-    priority_queue<employeeIter, vector<employeeIter>, cmp> searchResult;
+    prioirtyQ searchResult;
 
     for (employeeIter iter = pDataBase_->begin(); iter != pDataBase_->end(); iter++) {
         if ((*iter).employeeNum == cmdString.col2) {
@@ -12,9 +12,9 @@ priority_queue<employeeIter, vector<employeeIter>, cmp> EmployeeNumSearcher::sea
     return searchResult;
 }
 
-priority_queue<employeeIter, vector<employeeIter>, cmp> NameNumSearcher::search(const CmdString& cmdString) const
+prioirtyQ NameNumSearcher::search(const CmdString& cmdString) const
 {
-    priority_queue<employeeIter, vector<employeeIter>, cmp> searchResult;
+    prioirtyQ searchResult;
 
     if (cmdString.op2 == "f") {
         for (employeeIter iter = pDataBase_->begin(); iter != pDataBase_->end(); iter++) {
@@ -42,9 +42,9 @@ priority_queue<employeeIter, vector<employeeIter>, cmp> NameNumSearcher::search(
 
 }
 
-priority_queue<employeeIter, vector<employeeIter>, cmp> ClSearcher::search(const CmdString& cmdString) const
+prioirtyQ ClSearcher::search(const CmdString& cmdString) const
 {
-    priority_queue<employeeIter, vector<employeeIter>, cmp> searchResult;
+    prioirtyQ searchResult;
 
     for (employeeIter iter = pDataBase_->begin(); iter != pDataBase_->end(); iter++) {
         if ((*iter).cl == cmdString.col2) {
@@ -55,9 +55,9 @@ priority_queue<employeeIter, vector<employeeIter>, cmp> ClSearcher::search(const
     return searchResult;
 }
 
-priority_queue<employeeIter, vector<employeeIter>, cmp> PhoneNumSearcher::search(const CmdString& cmdString) const
+prioirtyQ PhoneNumSearcher::search(const CmdString& cmdString) const
 {
-    priority_queue<employeeIter, vector<employeeIter>, cmp> searchResult;
+    prioirtyQ searchResult;
 
     if (cmdString.op2 == "m") {
         for (employeeIter iter = pDataBase_->begin(); iter != pDataBase_->end(); iter++) {
@@ -84,9 +84,9 @@ priority_queue<employeeIter, vector<employeeIter>, cmp> PhoneNumSearcher::search
     return searchResult;
 }
 
-priority_queue<employeeIter, vector<employeeIter>, cmp> BirthdaySearcher::search(const CmdString& cmdString) const
+prioirtyQ BirthdaySearcher::search(const CmdString& cmdString) const
 {
-    priority_queue<employeeIter, vector<employeeIter>, cmp> searchResult;
+    prioirtyQ searchResult;
 
     if (cmdString.op2 == "y") {
         for (employeeIter iter = pDataBase_->begin(); iter != pDataBase_->end(); iter++) {
@@ -121,9 +121,9 @@ priority_queue<employeeIter, vector<employeeIter>, cmp> BirthdaySearcher::search
     return searchResult;
 }
 
-priority_queue<employeeIter, vector<employeeIter>, cmp> CertiSearcher::search(const CmdString& cmdString) const
+prioirtyQ CertiSearcher::search(const CmdString& cmdString) const
 {
-    priority_queue<employeeIter, vector<employeeIter>, cmp> searchResult;
+    prioirtyQ searchResult;
 
     for (employeeIter iter = pDataBase_->begin(); iter != pDataBase_->end(); iter++) {
         if ((*iter).certi == cmdString.col2) {

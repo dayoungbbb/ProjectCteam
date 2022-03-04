@@ -53,10 +53,10 @@ struct cmp {
         return stoi(aStr) > stoi(bStr);
     }
 };
+using employeeIter = vector<Employee>::iterator;
+using prioirtyQ = priority_queue<employeeIter, vector<employeeIter>, cmp>;
 
-using prioirtyQ = priority_queue<vector<Employee>::iterator, vector<vector<Employee>::iterator>, cmp>;
-
-vector<string> split(string input, char delimiter) {
+static vector<string> split(string input, char delimiter) {
     vector<string> answer;
     stringstream ss(input);
     string temp;
@@ -68,19 +68,19 @@ vector<string> split(string input, char delimiter) {
     return answer;
 }
 
-void parseName(string& str, string& firstName, string& lastName) {
+static void parseName(string& str, string& firstName, string& lastName) {
     vector<string> parseStr = split(str, ' ');
     firstName = parseStr[0];
     lastName = parseStr[1];
 }
 
-void parsePhoneNum(string& str, string& middleOfPhoneNum, string& backOfPhoneNum) {
+static void parsePhoneNum(string& str, string& middleOfPhoneNum, string& backOfPhoneNum) {
     vector<string> parseStr = split(str, '-');
     middleOfPhoneNum = parseStr[1];
     backOfPhoneNum = parseStr[2];
 }
 
-void parseBirthday(string& str, string& year, string& month, string& day) {
+static void parseBirthday(string& str, string& year, string& month, string& day) {
     year = str.substr(0, 4);
     month = str.substr(4, 2);
     day = str.substr(6, 2);
