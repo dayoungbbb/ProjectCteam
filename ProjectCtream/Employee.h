@@ -1,7 +1,8 @@
 #pragma once
 #include <vector>
 #include <string>
-
+#include <sstream>
+#include <queue>
 using namespace std;
 
 enum CareerLevel {
@@ -34,3 +35,53 @@ struct Employee {
 };
 
 static vector<Employee> dataBase;
+
+struct cmp {
+    string addStr(string str) {
+        string ret = "";
+        if (stoi(str.substr(0, 1)) <= 2)
+            return ret = "20" + str;
+        else if (stoi(str.substr(0, 1)) >= 6)
+            return ret = "19" + str;
+        else
+            return ret;
+    }
+
+    bool operator()(vector<Employee>::iterator a, vector<Employee>::iterator b) {
+        string aStr = addStr(a->employeeNum);
+        string bStr = addStr(b->employeeNum);
+        return stoi(aStr) > stoi(bStr);
+    }
+};
+
+using prioirtyQ = priority_queue<vector<Employee>::iterator, vector<vector<Employee>::iterator>, cmp>;
+
+vector<string> split(string input, char delimiter) {
+    vector<string> answer;
+    stringstream ss(input);
+    string temp;
+
+    while (getline(ss, temp, delimiter)) {
+        answer.push_back(temp);
+    }
+
+    return answer;
+}
+
+void parseName(string& str, string& firstName, string& lastName) {
+    vector<string> parseStr = split(str, ' ');
+    firstName = parseStr[0];
+    lastName = parseStr[1];
+}
+
+void parsePhoneNum(string& str, string& middleOfPhoneNum, string& backOfPhoneNum) {
+    vector<string> parseStr = split(str, '-');
+    middleOfPhoneNum = parseStr[1];
+    backOfPhoneNum = parseStr[2];
+}
+
+void parseBirthday(string& str, string& year, string& month, string& day) {
+    year = str.substr(0, 4);
+    month = str.substr(4, 2);
+    day = str.substr(6, 2);
+}

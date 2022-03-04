@@ -17,12 +17,13 @@ public:
     int parse(string cmd);
     CmdString getCmdString() const;
     int getCmdType() const;
+
 private:
     vector<string> splitString(string input, char delimiter);
 
 private:
     int cmdType_;
-    int cmdParameterSize_[MAX_CMDTYPE] = { 10, 6, 6, 8, 0 };
+    int cmdParameterSize_[MAX_CMDTYPE] = { 10, 6, 6, 8 };
     ParseCmdParameter *parseCmdParameter_[MAX_CMDTYPE];
     CmdString cmdString_;
     vector<string> cmdList_;
