@@ -23,7 +23,7 @@ protected:
     }
 
 protected:
-	priority_queue<vector<Employee>::iterator> searchQ;
+	prioirtyQ searchQ;
 	OperatorManager* operatorManager;
 };
 

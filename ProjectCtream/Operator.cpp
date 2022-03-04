@@ -1,6 +1,6 @@
 #include "Operator.h"
 
-void AddOperator::operate(priority_queue<vector<Employee>::iterator>& searchQ, CmdString& cmdString)
+void AddOperator::operate(prioirtyQ& searchQ, CmdString& cmdString)
 {
     Employee employee;
     employee.employeeNum = cmdString.col1;
@@ -12,7 +12,7 @@ void AddOperator::operate(priority_queue<vector<Employee>::iterator>& searchQ, C
     dataBase->push_back(employee);
 }
 
-void ModOperator::operate(priority_queue<vector<Employee>::iterator>& searchQ, CmdString& cmdString)
+void ModOperator::operate(prioirtyQ& searchQ, CmdString& cmdString)
 {
     while (!searchQ.empty()) {
         vector<Employee>::iterator iter = searchQ.top();
@@ -43,7 +43,7 @@ void ModOperator::operate(priority_queue<vector<Employee>::iterator>& searchQ, C
     }
 }
 
-void DelOperator::operate(priority_queue<vector<Employee>::iterator>& searchQ, CmdString& cmdString)
+void DelOperator::operate(prioirtyQ& searchQ, CmdString& cmdString)
 {
     while (!searchQ.empty()) {
         vector<Employee>::iterator iter = searchQ.top();
