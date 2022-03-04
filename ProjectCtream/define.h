@@ -25,3 +25,10 @@ enum CmdType {
     MAX_CMDTYPE
 };
 
+static const string CmdTypeStr[] = {
+    "ADD",
+    "DEL",
+    "SCH",
+    "MOD",
+    "INVALID",
+};
