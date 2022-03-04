@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <string>
+#include <sstream>
 
 using namespace std;
 
@@ -34,3 +35,34 @@ struct Employee {
 };
 
 static vector<Employee> dataBase;
+
+vector<string> split(string input, char delimiter) {
+    vector<string> answer;
+    stringstream ss(input);
+    string temp;
+
+    while (getline(ss, temp, delimiter)) {
+        answer.push_back(temp);
+    }
+
+    return answer;
+}
+
+void parseName
+(string& str, string& firstName, string& lastName) {
+    vector<string> parseStr = split(str, ' ');
+    firstName = parseStr[0];
+    lastName = parseStr[1];
+}
+
+void parsePhoneNum(string& str, string& middleOfPhoneNum, string& backOfPhoneNum) {
+    vector<string> parseStr = split(str, '-');
+    middleOfPhoneNum = parseStr[1];
+    backOfPhoneNum = parseStr[2];
+}
+
+void parseBirthday(string& str, string& year, string& month, string& day) {
+    year = str.substr(0, 4);
+    month = str.substr(4, 2);
+    day = str.substr(6, 2);
+}
