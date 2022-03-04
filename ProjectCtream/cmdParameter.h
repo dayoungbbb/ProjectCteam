@@ -13,7 +13,6 @@ public:
         parseCmdParameter_[DEL] = new ParseDelCmdParameter();
         parseCmdParameter_[SCH] = new ParseSchCmdParameter();
         parseCmdParameter_[MOD] = new ParseModCmdParameter();
-        parseCmdParameter_[NONE] = new ParseCmdParameter();
     }
     int parse(string cmd);
     CmdString getCmdString() const;

@@ -5,13 +5,9 @@
 using namespace std;
 class ParseCmdParameter {
 public:
-    virtual int parseCmdParameter(CmdString& cmdString, const vector<string>& cmdList) {
-        return false;
-    }
+    virtual int parseCmdParameter(CmdString& cmdString, const vector<string>& cmdList) = 0;
 private:
-    virtual int isValidCmdList(const vector<string>& cmdList) {
-        return false;
-    }
+    virtual int isValidCmdList(const vector<string>& cmdList) = 0;
 };
 
 class ParseAddCmdParameter : public ParseCmdParameter {

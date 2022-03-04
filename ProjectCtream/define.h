@@ -4,6 +4,7 @@ using namespace std;
 #define PhoneNumSize 3
 #define NameSize 2
 #define BirthdaySize 8
+#define INVALID -1
 
 struct CmdString {
     string op1;
@@ -21,6 +22,5 @@ enum CmdType {
     DEL,
     SCH,
     MOD,
-    NONE,
     MAX_CMDTYPE
 };
