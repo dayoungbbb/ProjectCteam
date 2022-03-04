@@ -24,3 +24,4 @@ enum CmdType {
     MOD,
     MAX_CMDTYPE
 };
+
