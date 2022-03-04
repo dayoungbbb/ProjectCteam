@@ -7,6 +7,7 @@ class Operator {
 public:
     Operator(vector<Employee>* dataBase_) { dataBase = dataBase_; }
     virtual void operate(priority_queue<vector<Employee>::iterator>& searchQ, CmdString& cmdString) = 0;
+
 protected:
     vector<Employee>* dataBase;
 };
@@ -14,18 +15,24 @@ protected:
 class AddOperator : public Operator {
 public:
     AddOperator(vector<Employee>* dataBase) : Operator(dataBase) {}
+
+private:
     virtual void operate(priority_queue<vector<Employee>::iterator>& searchQ, CmdString& cmdString) override;
 };
 
 class ModOperator : public Operator {
 public:
     ModOperator(vector<Employee>* dataBase) : Operator(dataBase) {}
+
+private:
     virtual void operate(priority_queue<vector<Employee>::iterator>& searchQ, CmdString& cmdString) override;
 };
 
 class DelOperator : public Operator {
 public:
     DelOperator(vector<Employee>* dataBase) : Operator(dataBase) {}
+
+private:
     virtual void operate(priority_queue<vector<Employee>::iterator>& searchQ, CmdString& cmdString) override;
 };
 
