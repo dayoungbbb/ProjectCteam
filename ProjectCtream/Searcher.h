@@ -3,10 +3,20 @@
 #include "define.h"
 #include <queue>
 using employeeIter = vector<Employee>::iterator;
-
+string addStr(string str) {
+    string ret = "";
+    if (stoi(str.substr(0, 1)) <= 2)
+        return ret = "20" + str;
+    else if (stoi(str.substr(0, 1)) >= 6)
+        return ret = "19" + str;
+    else
+        return ret;
+}
 struct cmp {
     bool operator()(employeeIter a, employeeIter b) {
-        return stoi(a->employeeNum) < stoi(b->employeeNum);
+        string aStr = addStr(a->employeeNum);
+        string bStr = addStr(b->employeeNum);
+        return stoi(aStr) > stoi(bStr);
     }
 };
 

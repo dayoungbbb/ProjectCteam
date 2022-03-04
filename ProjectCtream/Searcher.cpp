@@ -6,7 +6,7 @@ priority_queue<employeeIter, vector<employeeIter>, cmp> EmployeeNumSearcher::sea
 
     for (vector<Employee>::iterator iter = pDataBase_->begin(); iter != pDataBase_->end(); iter++) {
         if ((*iter).employeeNum == cmdString.col2) {
-            searchResult.push(iter);
+            searchResult.emplace(iter);
         }
     }
 
@@ -20,7 +20,7 @@ priority_queue<employeeIter, vector<employeeIter>, cmp> NameNumSearcher::search(
     if (cmdString.op2 == "f") {
         for (vector<Employee>::iterator iter = pDataBase_->begin(); iter != pDataBase_->end(); iter++) {
             if ((*iter).firstName == cmdString.col2) {
-                searchResult.push(iter);
+                searchResult.emplace(iter);
             }
         }
     }
@@ -28,14 +28,14 @@ priority_queue<employeeIter, vector<employeeIter>, cmp> NameNumSearcher::search(
     {
         for (vector<Employee>::iterator iter = pDataBase_->begin(); iter != pDataBase_->end(); iter++) {
             if ((*iter).lastName == cmdString.col2) {
-                searchResult.push(iter);
+                searchResult.emplace(iter);
             }
         }
     }
     else {
         for (vector<Employee>::iterator iter = pDataBase_->begin(); iter != pDataBase_->end(); iter++) {
             if (((*iter).firstName + " " + (*iter).lastName )== cmdString.col2) {
-                searchResult.push(iter);
+                searchResult.emplace(iter);
             }
         }
     }
@@ -49,7 +49,7 @@ priority_queue<employeeIter, vector<employeeIter>, cmp> ClSearcher::search(const
 
     for (vector<Employee>::iterator iter = pDataBase_->begin(); iter != pDataBase_->end(); iter++) {
         if ((*iter).cl == cmdString.col2) {
-            searchResult.push(iter);
+            searchResult.emplace(iter);
         }
     }
 
@@ -63,7 +63,7 @@ priority_queue<employeeIter, vector<employeeIter>, cmp> PhoneNumSearcher::search
     if (cmdString.op2 == "m") {
         for (vector<Employee>::iterator iter = pDataBase_->begin(); iter != pDataBase_->end(); iter++) {
             if ((*iter).middleOfPhoneNum == cmdString.col2) {
-                searchResult.push(iter);
+                searchResult.emplace(iter);
             }
         }
     }
@@ -71,14 +71,14 @@ priority_queue<employeeIter, vector<employeeIter>, cmp> PhoneNumSearcher::search
     {
         for (vector<Employee>::iterator iter = pDataBase_->begin(); iter != pDataBase_->end(); iter++) {
             if ((*iter).backOfPhoneNum == cmdString.col2) {
-                searchResult.push(iter);
+                searchResult.emplace(iter);
             }
         }
     }
     else {
         for (vector<Employee>::iterator iter = pDataBase_->begin(); iter != pDataBase_->end(); iter++) {
             if ( ("010-"+ (*iter).middleOfPhoneNum + "-" + (*iter).backOfPhoneNum) == cmdString.col2) {
-                searchResult.push(iter);
+                searchResult.emplace(iter);
             }
         }
     }
@@ -92,7 +92,7 @@ priority_queue<employeeIter, vector<employeeIter>, cmp> BirthdaySearcher::search
     if (cmdString.op2 == "y") {
         for (vector<Employee>::iterator iter = pDataBase_->begin(); iter != pDataBase_->end(); iter++) {
             if ((*iter).yearOfBday == cmdString.col2) {
-                searchResult.push(iter);
+                searchResult.emplace(iter);
             }
         }
     }
@@ -100,7 +100,7 @@ priority_queue<employeeIter, vector<employeeIter>, cmp> BirthdaySearcher::search
     {
         for (vector<Employee>::iterator iter = pDataBase_->begin(); iter != pDataBase_->end(); iter++) {
             if ((*iter).monthOfBday == cmdString.col2) {
-                searchResult.push(iter);
+                searchResult.emplace(iter);
             }
         }
     }
@@ -108,14 +108,14 @@ priority_queue<employeeIter, vector<employeeIter>, cmp> BirthdaySearcher::search
     {
         for (vector<Employee>::iterator iter = pDataBase_->begin(); iter != pDataBase_->end(); iter++) {
             if ((*iter).dateOfBday == cmdString.col2) {
-                searchResult.push(iter);
+                searchResult.emplace(iter);
             }
         }
     }
     else {
         for (vector<Employee>::iterator iter = pDataBase_->begin(); iter != pDataBase_->end(); iter++) {
             if ( ((*iter).yearOfBday + (*iter).monthOfBday + (*iter).dateOfBday) == cmdString.col2) {
-                searchResult.push(iter);
+                searchResult.emplace(iter);
             }
         }
     }
@@ -128,7 +128,7 @@ priority_queue<employeeIter, vector<employeeIter>, cmp> CertiSearcher::search(co
 
     for (vector<Employee>::iterator iter = pDataBase_->begin(); iter != pDataBase_->end(); iter++) {
         if ((*iter).certi == cmdString.col2) {
-            searchResult.push(iter);
+            searchResult.emplace(iter);
         }
     }
 

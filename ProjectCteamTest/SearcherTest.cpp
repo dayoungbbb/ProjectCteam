@@ -13,8 +13,8 @@ protected:
 	{
 		searcherManager = new SearcherManager{ &dataBase };
 		dataBase.push_back({ "15123099","VXIHXOTH","JHOP","CL3","3112","2609","1977","12","11","ADV" });
-		dataBase.push_back({ "17112609","FB","NTAWR","CL4","5645","6122","1986","12","03","PRO" });
-		dataBase.push_back({ "16119968","FB","NTAWR","CL2","5644","6121","1992","04","28","PRO" });
+		dataBase.push_back({ "60112609","FB","NTAWR","CL4","5645","6122","1977","12","11","PRO" });
+		dataBase.push_back({ "16119968","FB","NTAWR","CL2","5645","6122","1992","04","28","PRO" });
 	}
 
 	virtual void TearDown() override
@@ -39,7 +39,7 @@ TEST_F(SearcherTest, nameOptionLSearchTest) {
 	string result;
 	if (!iter.empty())
 		result = iter.top()->employeeNum;
-	EXPECT_EQ("16119968", result);
+	EXPECT_EQ("60112609", result);
 }
 TEST_F(SearcherTest, nameOptionFSearchTest) {
 	const CmdString cmdString = { "", "f", "name","FB", "","","","" };
@@ -48,7 +48,7 @@ TEST_F(SearcherTest, nameOptionFSearchTest) {
 	string result;
 	if (!iter.empty())
 		result = iter.top()->employeeNum;
-	EXPECT_EQ("16119968", result);
+	EXPECT_EQ("60112609", result);
 }
 
 TEST_F(SearcherTest, phoneNumOptionLSearchTest) {
@@ -57,7 +57,7 @@ TEST_F(SearcherTest, phoneNumOptionLSearchTest) {
 	priority_queue<employeeIter, vector<employeeIter>, cmp> iter = searcher->search(cmdString);	string result;
 	if (!iter.empty())
 		result = iter.top()->employeeNum;
-	EXPECT_EQ("17112609", result);
+	EXPECT_EQ("60112609", result);
 }
 TEST_F(SearcherTest, phoneNumOptionFSearchTest) {
 	const CmdString cmdString = { "", "l", "phoneNum","6122", "","","","" };
@@ -65,7 +65,7 @@ TEST_F(SearcherTest, phoneNumOptionFSearchTest) {
 	priority_queue<employeeIter, vector<employeeIter>, cmp> iter = searcher->search(cmdString);	string result;
 	if (!iter.empty())
 		result = iter.top()->employeeNum;
-	EXPECT_EQ("17112609", result);
+	EXPECT_EQ("60112609", result);
 }
 
 TEST_F(SearcherTest, birthdayOptionYSearchTest) {
@@ -74,7 +74,7 @@ TEST_F(SearcherTest, birthdayOptionYSearchTest) {
 	priority_queue<employeeIter, vector<employeeIter>, cmp> iter = searcher->search(cmdString);	string result;
 	if (!iter.empty())
 		result = iter.top()->employeeNum;
-	EXPECT_EQ("15123099", result);
+	EXPECT_EQ("60112609", result);
 }
 TEST_F(SearcherTest, birthdayOptionMSearchTest) {
 	const CmdString cmdString = { "", "m", "birthday","12", "","","","" };
@@ -82,7 +82,7 @@ TEST_F(SearcherTest, birthdayOptionMSearchTest) {
 	priority_queue<employeeIter, vector<employeeIter>, cmp> iter = searcher->search(cmdString);	string result;
 	if (!iter.empty())
 		result = iter.top()->employeeNum;
-	EXPECT_EQ("15123099", result);
+	EXPECT_EQ("60112609", result);
 }
 
 TEST_F(SearcherTest, birthdayOptionDSearchTest) {
@@ -91,5 +91,5 @@ TEST_F(SearcherTest, birthdayOptionDSearchTest) {
 	priority_queue<employeeIter, vector<employeeIter>, cmp> iter = searcher->search(cmdString);	string result;
 	if (!iter.empty())
 		result = iter.top()->employeeNum;
-	EXPECT_EQ("15123099", result);
+	EXPECT_EQ("60112609", result);
 }
