@@ -16,14 +16,14 @@ prioirtyQ NameNumSearcher::search(const CmdString& cmdString) const
 {
     prioirtyQ searchResult;
 
-    if (cmdString.op2 == "f") {
+    if (cmdString.op2 == "-f") {
         for (employeeIter iter = pDataBase_->begin(); iter != pDataBase_->end(); iter++) {
             if ((*iter).firstName == cmdString.col2) {
                 searchResult.emplace(iter);
             }
         }
     }
-    else if (cmdString.op2 == "l")
+    else if (cmdString.op2 == "-l")
     {
         for (employeeIter iter = pDataBase_->begin(); iter != pDataBase_->end(); iter++) {
             if ((*iter).lastName == cmdString.col2) {
@@ -59,14 +59,14 @@ prioirtyQ PhoneNumSearcher::search(const CmdString& cmdString) const
 {
     prioirtyQ searchResult;
 
-    if (cmdString.op2 == "m") {
+    if (cmdString.op2 == "-m") {
         for (employeeIter iter = pDataBase_->begin(); iter != pDataBase_->end(); iter++) {
             if ((*iter).middleOfPhoneNum == cmdString.col2) {
                 searchResult.emplace(iter);
             }
         }
     }
-    else if (cmdString.op2 == "l")
+    else if (cmdString.op2 == "-l")
     {
         for (employeeIter iter = pDataBase_->begin(); iter != pDataBase_->end(); iter++) {
             if ((*iter).backOfPhoneNum == cmdString.col2) {
@@ -88,14 +88,14 @@ prioirtyQ BirthdaySearcher::search(const CmdString& cmdString) const
 {
     prioirtyQ searchResult;
 
-    if (cmdString.op2 == "y") {
+    if (cmdString.op2 == "-y") {
         for (employeeIter iter = pDataBase_->begin(); iter != pDataBase_->end(); iter++) {
             if ((*iter).yearOfBday == cmdString.col2) {
                 searchResult.emplace(iter);
             }
         }
     }
-    else if (cmdString.op2 == "m")
+    else if (cmdString.op2 == "-m")
     {
         for (employeeIter iter = pDataBase_->begin(); iter != pDataBase_->end(); iter++) {
             if ((*iter).monthOfBday == cmdString.col2) {
@@ -103,7 +103,7 @@ prioirtyQ BirthdaySearcher::search(const CmdString& cmdString) const
             }
         }
     }
-    else if (cmdString.op2 == "d")
+    else if (cmdString.op2 == "-d")
     {
         for (employeeIter iter = pDataBase_->begin(); iter != pDataBase_->end(); iter++) {
             if ((*iter).dateOfBday == cmdString.col2) {
