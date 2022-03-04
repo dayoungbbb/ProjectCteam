@@ -48,8 +48,7 @@ vector<string> split(string input, char delimiter) {
     return answer;
 }
 
-void parseName
-(string& str, string& firstName, string& lastName) {
+void parseName(string& str, string& firstName, string& lastName) {
     vector<string> parseStr = split(str, ' ');
     firstName = parseStr[0];
     lastName = parseStr[1];

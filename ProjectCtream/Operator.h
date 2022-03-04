@@ -32,34 +32,25 @@ public:
 class OperatorManager {
 public:
     OperatorManager(vector<Employee>* dataBase) {
-        addOperator = new AddOperator(dataBase);
-        modOperator = new ModOperator(dataBase);
-        delOperator = new DelOperator(dataBase);
+        myOperator[ADD] = new AddOperator(dataBase);
+        myOperator[MOD] = new ModOperator(dataBase);
+        myOperator[DEL] = new DelOperator(dataBase);
     }
 
     ~OperatorManager() {
-        if (addOperator) delete addOperator;
-        if (modOperator) delete modOperator;
-        if (delOperator) delete delOperator;
+        for (auto op : myOperator) {
+            if (op) delete op;
+        }
     }
 
     Operator* getOperator(CmdType type) const {
-        if (ADD == type) {
-            return addOperator;
-        }
-        else if (MOD == type) {
-            return modOperator;
-        }
-        else if (DEL == type) {
-            return delOperator;
-        }
-        else {
+        if (type >= MAX_CMDTYPE) {
             throw invalid_argument("해당 명령어는 지원하지 않습니다");
         }
+
+        return myOperator[type];
     }
 
 private:
-    AddOperator* addOperator;
-    ModOperator* modOperator;
-    DelOperator* delOperator;
+    Operator* myOperator[MAX_CMDTYPE];
 };
