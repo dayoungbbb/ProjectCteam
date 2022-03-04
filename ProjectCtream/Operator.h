@@ -1,7 +1,6 @@
 #pragma once
 #include "Employee.h"
 #include "cmdParameter.h"
-
 class Operator {
 public:
     Operator(vector<Employee>* dataBase_) { dataBase = dataBase_; }
@@ -41,12 +40,12 @@ public:
         myOperator[ADD] = new AddOperator(dataBase);
         myOperator[MOD] = new ModOperator(dataBase);
         myOperator[DEL] = new DelOperator(dataBase);
+        myOperator[SCH] = nullptr;
     }
 
     ~OperatorManager() {
-        for (auto op : myOperator) {
+        for (auto op : myOperator)
             if (op) delete op;
-        }
     }
 
     Operator* getOperator(CmdType type) const {
