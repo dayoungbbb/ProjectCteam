@@ -2,7 +2,6 @@
 #include "Employee.h"
 #include "define.h"
 #include <queue>
-using employeeIter = vector<Employee>::iterator;
 string addStr(string str) {
     string ret = "";
     if (stoi(str.substr(0, 1)) <= 2)
