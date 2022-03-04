@@ -2,39 +2,29 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include "define.h"
+#include "parseCmdParameter.h"
 using namespace std;
 
 class CmdParameter {
 public:
-    int parseCmdParameter(string cmd);
-    string getOp1();
-    string getOp2();
-    string getCol1();
-    string getCol2();
-    string getCol3();
-    string getCol4();
-    string getCol5();
-    string getCol6();
+    CmdParameter() {
+        parseCmdParameter_[ADD] = new ParseAddCmdParameter();
+        parseCmdParameter_[DEL] = new ParseDelCmdParameter();
+        parseCmdParameter_[SCH] = new ParseSchCmdParameter();
+        parseCmdParameter_[MOD] = new ParseModCmdParameter();
+        parseCmdParameter_[NONE] = new ParseCmdParameter();
+    }
+    int parse(string cmd);
+    CmdString getCmdString() const;
+    int getCmdType() const;
 private:
-    int parseAddCmdParameter();
-    int parseDelCmdParameter();
-    int parseSchCmdParameter();
-    int parseModCmdParameter();
-    int isValidAddCmdParameter();
-    int isValidDelCmdParameter();
-    int isValidSchCmdParameter();
-    int isValidModCmdParameter();
     vector<string> splitString(string input, char delimiter);
 
 private:
-    int cmdType;
-    string op1;
-    string op2;
-    string col1;
-    string col2;
-    string col3;
-    string col4;
-    string col5;
-    string col6;
-    vector<string> cmdList;
+    int cmdType_;
+    int cmdParameterSize_[MAX_CMDTYPE] = { 10, 6, 6, 8, 0 };
+    ParseCmdParameter *parseCmdParameter_[MAX_CMDTYPE];
+    CmdString cmdString_;
+    vector<string> cmdList_;
 };
