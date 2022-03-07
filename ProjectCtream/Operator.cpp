@@ -4,10 +4,10 @@ void AddOperator::operate(prioirtyQ& searchQ, CmdString& cmdString)
 {
     Employee employee;
     employee.employeeNum = cmdString.col1;
-    parseName(cmdString.col2, employee.firstName, employee.lastName);
+    parseName(cmdString.col2, employee.name.firstName, employee.name.lastName);
     employee.cl = cmdString.col3;
-    parsePhoneNum(cmdString.col4, employee.middleOfPhoneNum, employee.backOfPhoneNum);
-    parseBirthday(cmdString.col5, employee.yearOfBday, employee.monthOfBday, employee.dateOfBday);
+    parsePhoneNum(cmdString.col4, employee.phoneNum.middle, employee.phoneNum.last);
+    parseBirthday(cmdString.col5, employee.bday.year, employee.bday.month, employee.bday.day);
     employee.certi = cmdString.col6;
     dataBase->push_back(employee);
 }
@@ -21,16 +21,16 @@ void ModOperator::operate(prioirtyQ& searchQ, CmdString& cmdString)
             throw invalid_argument("사원번호는 바꿀 수 없습니다");
         }
         else if (cmdString.col3 == "name") {
-            parseName(cmdString.col4, iter->firstName, iter->lastName);
+            parseName(cmdString.col4, iter->name.firstName, iter->name.lastName);
         }
         else if (cmdString.col3 == "cl") {
             iter->cl = cmdString.col4;
         }
         else if (cmdString.col3 == "phoneNum") {
-            parsePhoneNum(cmdString.col4, iter->middleOfPhoneNum, iter->backOfPhoneNum);
+            parsePhoneNum(cmdString.col4, iter->phoneNum.middle, iter->phoneNum.last);
         }
         else if (cmdString.col3 == "birthday") {
-            parseBirthday(cmdString.col4, iter->yearOfBday, iter->monthOfBday, iter->dateOfBday);
+            parseBirthday(cmdString.col4, iter->bday.year, iter->bday.month, iter->bday.day);
         }
         else if (cmdString.col3 == "certi") {
             iter->certi = cmdString.col4;

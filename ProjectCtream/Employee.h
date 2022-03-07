@@ -4,6 +4,7 @@
 #include <string>
 #include <sstream>
 #include <queue>
+#include "define.h"
 using namespace std;
 
 enum CareerLevel {
@@ -24,14 +25,10 @@ static string certiString[3] = { "ADV", "PRO", "EXP" };
 
 struct Employee {
     string employeeNum;
-    string firstName;
-    string lastName;
+    Name name;
     string cl;
-    string middleOfPhoneNum;
-    string backOfPhoneNum;
-    string yearOfBday;
-    string monthOfBday;
-    string dateOfBday;
+    PhoneNum phoneNum;
+    Bday bday;
     string certi;
 };
 

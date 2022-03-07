@@ -32,3 +32,19 @@ static const string CmdTypeStr[] = {
     "MOD",
     "INVALID",
 };
+
+struct Name {
+    string firstName;
+    string lastName;
+};
+
+struct PhoneNum {
+    string middle;
+    string last;
+};
+
+struct Bday {
+    string year;
+    string month;
+    string day;
+};
