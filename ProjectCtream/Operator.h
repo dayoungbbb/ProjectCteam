@@ -1,45 +1,50 @@
 #pragma once
 #include "Employee.h"
 #include "cmdParameter.h"
+
 class Operator {
 public:
-    Operator(list<Employee>* dataBase_) { dataBase = dataBase_; }
-    virtual void operate(prioirtyQ& searchQ, CmdString& cmdString) = 0;
+    Operator(map<string, Employee>* dataBase_, vector<multimap<string, string>>* columnMap_) {
+        dataBase = dataBase;
+        columnMap = columnMap;
+    }
+    virtual void operate(vector<string>& searchQ, CmdString& cmdString) = 0;
 
 protected:
-    list<Employee>* dataBase;
+    map<string, Employee>* dataBase;
+    vector<multimap<string, string>>* columnMap;
 };
 
 class AddOperator : public Operator {
 public:
-    AddOperator(list<Employee>* dataBase) : Operator(dataBase) {}
+    AddOperator(map<string, Employee>* dataBase, vector<multimap<string, string>>* columnMap) : Operator(dataBase, columnMap) {}
 
 private:
-    virtual void operate(prioirtyQ& searchQ, CmdString& cmdString) override;
+    virtual void operate(vector<string>& searchQ, CmdString& cmdString) override;
 };
 
 class ModOperator : public Operator {
 public:
-    ModOperator(list<Employee>* dataBase) : Operator(dataBase) {}
+    ModOperator(map<string, Employee>* dataBase, vector<multimap<string, string>>* columnMap) : Operator(dataBase, columnMap) {}
 
 private:
-    virtual void operate(prioirtyQ& searchQ, CmdString& cmdString) override;
+    virtual void operate(vector<string>& searchQ, CmdString& cmdString) override;
 };
 
 class DelOperator : public Operator {
 public:
-    DelOperator(list<Employee>* dataBase) : Operator(dataBase) {}
+    DelOperator(map<string, Employee>* dataBase, vector<multimap<string, string>>* columnMap) : Operator(dataBase, columnMap) {}
 
 private:
-    virtual void operate(prioirtyQ& searchQ, CmdString& cmdString) override;
+    virtual void operate(vector<string>& searchQ, CmdString& cmdString) override;
 };
 
 class OperatorManager {
 public:
-    OperatorManager(list<Employee>* dataBase) {
-        myOperator[ADD] = new AddOperator(dataBase);
-        myOperator[MOD] = new ModOperator(dataBase);
-        myOperator[DEL] = new DelOperator(dataBase);
+    OperatorManager(map<string, Employee>* dataBase, vector<multimap<string, string>>* columnMap) {
+        myOperator[ADD] = new AddOperator(dataBase, columnMap);
+        myOperator[MOD] = new ModOperator(dataBase, columnMap);
+        myOperator[DEL] = new DelOperator(dataBase, columnMap);
         myOperator[SCH] = nullptr;
     }
 

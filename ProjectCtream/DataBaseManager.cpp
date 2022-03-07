@@ -11,8 +11,25 @@
 #include "DataBaseManager.h"
 
 DataBaseManager::DataBaseManager() {
-	operatorManager = new OperatorManager(&dataBase);
-	searcherManager = new SearcherManager(&dataBase);
+	multimap<string, string> employNumMap, nameMap, clMap, phoneNumMap, bDayMap, certiMap, 
+		FirstNameMap, LastNameMap,  middlePhoneNumMap, backPhoneNumMap, yearBdayMap, monthBdayMap, dateBdayMap;
+
+	columnMap.push_back(employNumMap);
+	columnMap.push_back(nameMap);
+	columnMap.push_back(clMap);
+	columnMap.push_back(phoneNumMap);
+	columnMap.push_back(bDayMap);
+	columnMap.push_back(certiMap);
+	columnMap.push_back(FirstNameMap);
+	columnMap.push_back(LastNameMap);
+	columnMap.push_back(middlePhoneNumMap);
+	columnMap.push_back(backPhoneNumMap);
+	columnMap.push_back(yearBdayMap);
+	columnMap.push_back(monthBdayMap);
+	columnMap.push_back(dateBdayMap);
+
+	operatorManager = new OperatorManager(&dataBase, &columnMap);
+	searcherManager = new SearcherManager(&dataBasee);
 }
 
 DataBaseManager::~DataBaseManager() {
@@ -43,7 +60,9 @@ void DataBaseManager::operateOperator(int cmdType, CmdString cmdString, prioirty
 		throw invalid_argument("dataBaseSearcher is NULL");
 	}
 
-	dataBaseOperator->operate(searchQ, cmdString);
+	vector<string> temp;
+
+	dataBaseOperator->operate(temp, cmdString);
 }
 
 

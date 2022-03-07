@@ -89,6 +89,6 @@ public:
     Searcher* getSearcher(const CmdString& cmdString) const ;
 
 private:
-    Searcher* searcher_[MAX_COLUMNTYPE];
+    Searcher* searcher_[MAX_MAINCOLUMNTYPE];
 
 };

@@ -4,6 +4,7 @@
 #include <string>
 #include <sstream>
 #include <queue>
+#include <map>
 #include "define.h"
 using namespace std;
 
@@ -31,8 +32,6 @@ struct Employee {
     Bday bday;
     string certi;
 };
-
-static list<Employee> dataBase;
 
 struct cmp {
     string addStr(string str) {
