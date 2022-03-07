@@ -4,7 +4,7 @@ class DataBaseManager {
 public:
 	DataBaseManager();
 	~DataBaseManager();
-	void operate(std::string inputFileName);
+	void operate(std::string inputFileName, std::string outputFileName);
 private:
 	void operateSearcher(int cmdType, const CmdString cmdString, prioirtyQ& searchQ);
 	void operateOperator(int cmdType, CmdString cmdString, prioirtyQ& searchQ);

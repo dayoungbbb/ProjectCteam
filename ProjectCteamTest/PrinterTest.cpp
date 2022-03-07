@@ -36,6 +36,7 @@ protected:
         unsigned long long checkSum = 0;
         char c;
         while (outputFile.get(c)) {
+            if (c == '\n') continue;
             checkSum += static_cast<unsigned long long>(c);
         }
         outputFile.close();
@@ -56,9 +57,10 @@ TEST_F(PrinterTest, printTest) {
     priorityQ.push(dataBase.begin() + 2);
 
     bool isFirst = true;
+    printer.setOutputFileName("output_PrinterTest.txt");
     printer.print(MOD, " ", priorityQ, isFirst);
 
-    EXPECT_EQ(getOutputFileCheckSum("output.txt"), getOutputFileCheckSum("golden_PrinterTest_1.txt"));
+    EXPECT_EQ(getOutputFileCheckSum("output_PrinterTest.txt"), getOutputFileCheckSum("golden_PrinterTest_1.txt"));
 
     priorityQ.push(dataBase.begin() + 3);
     priorityQ.push(dataBase.begin() + 4);
@@ -67,5 +69,5 @@ TEST_F(PrinterTest, printTest) {
 
     printer.print(DEL, "-p", priorityQ, isFirst);
 
-    EXPECT_EQ(getOutputFileCheckSum("output.txt"), getOutputFileCheckSum("golden_PrinterTest_2.txt"));
+    EXPECT_EQ(getOutputFileCheckSum("output_PrinterTest.txt"), getOutputFileCheckSum("golden_PrinterTest_2.txt"));
 }

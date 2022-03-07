@@ -31,6 +31,7 @@ protected:
         unsigned long long checkSum = 0;
         char c;
         while (outputFile.get(c)) {
+            if (c == '\n') continue;
             checkSum += static_cast<unsigned long long>(c);
         }
         outputFile.close();
@@ -44,7 +45,7 @@ protected:
 };
 
 TEST_F(DataBaseManagerTest, operateTest) {
-    dataBaseManager->operate("test_input.txt");
+    dataBaseManager->operate("test_input.txt", "output_DataBaseManagerTest.txt");
 
-    EXPECT_EQ(getOutputFileCheckSum("output.txt"), getOutputFileCheckSum("golden_DataBaseManagerTest.txt"));
+    EXPECT_EQ(getOutputFileCheckSum("output_DataBaseManagerTest.txt"), getOutputFileCheckSum("golden_DataBaseManagerTest.txt"));
 }

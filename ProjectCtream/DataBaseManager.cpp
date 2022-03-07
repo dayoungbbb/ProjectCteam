@@ -13,12 +13,13 @@
 DataBaseManager::DataBaseManager() {
 	operatorManager = new OperatorManager(&dataBase);
 	searcherManager = new SearcherManager(&dataBase);
-
 }
 
 DataBaseManager::~DataBaseManager() {
 	delete operatorManager;
+	operatorManager = nullptr;
 	delete searcherManager;
+	searcherManager = nullptr;
 }
 
 void DataBaseManager::operateSearcher(int cmdType, const CmdString cmdString, prioirtyQ&searchQ) {
@@ -46,7 +47,7 @@ void DataBaseManager::operateOperator(int cmdType, CmdString cmdString, prioirty
 }
 
 
-void DataBaseManager::operate(std::string inputFileName) {
+void DataBaseManager::operate(std::string inputFileName, std::string outputFileName) {
 
 	ifstream inputFile;
 	inputFile.open(inputFileName);
@@ -72,6 +73,7 @@ void DataBaseManager::operate(std::string inputFileName) {
 		prioirtyQ searchQ;
 		operateSearcher(cmdType, cmdString, searchQ);
 
+		printer.setOutputFileName(outputFileName);
 		printer.print(cmdType, cmdString.op1, searchQ, isFirst);
 
 		operateOperator(cmdType, cmdString, searchQ);
