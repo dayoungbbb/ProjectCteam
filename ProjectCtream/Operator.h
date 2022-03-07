@@ -8,7 +8,7 @@ public:
         dataBase = dataBase_;
         columnMap = columnMap_;
     }
-    virtual void operate(vector<string>& searchQ, CmdString& cmdString) = 0;
+    virtual void operate(vector<string>& searchQ, void* cmdString) = 0;
 
 protected:
     void addColumnMap(Employee& employee);
@@ -27,7 +27,7 @@ public:
     AddOperator(map<string, Employee>* dataBase, vector<multimap<string, string>>* columnMap) : Operator(dataBase, columnMap) {}
 
 private:
-    virtual void operate(vector<string>& searchQ, CmdString& cmdString) override;
+    virtual void operate(vector<string>& searchQ, void* cmdString) override;
 };
 
 class ModOperator : public Operator {
@@ -35,7 +35,7 @@ public:
     ModOperator(map<string, Employee>* dataBase, vector<multimap<string, string>>* columnMap) : Operator(dataBase, columnMap) {}
 
 private:
-    virtual void operate(vector<string>& searchQ, CmdString& cmdString) override;
+    virtual void operate(vector<string>& searchQ, void* cmdString) override;
 };
 
 class DelOperator : public Operator {
@@ -43,7 +43,7 @@ public:
     DelOperator(map<string, Employee>* dataBase, vector<multimap<string, string>>* columnMap) : Operator(dataBase, columnMap) {}
 
 private:
-    virtual void operate(vector<string>& searchQ, CmdString& cmdString) override;
+    virtual void operate(vector<string>& searchQ, void* cmdString) override;
 };
 
 class OperatorManager {

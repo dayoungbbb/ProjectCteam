@@ -76,54 +76,54 @@ protected:
 };
 
 TEST_F(SearcherTest, nameSearchTest) {
-	const CmdString cmdString = { "", "", "name","VXIHXOTH JHOP", "","","","" };
-	Searcher* searcher = searcherManager->getSearcher(cmdString);
-	vector<string> iter = searcher->search(cmdString);
+	const SchCmd cmdString = { BLANK, NAME, "VXIHXOTH JHOP" };
+	Searcher* searcher = searcherManager->getSearcher(&cmdString);
+	vector<string> iter = searcher->search(&cmdString);
 	EXPECT_EQ("15123099", iter[0]);
 }
 TEST_F(SearcherTest, nameOptionLSearchTest) {
-	const CmdString cmdString = { "", "-l", "name","NTAWR", "","","","" };
-	Searcher* searcher = searcherManager->getSearcher(cmdString);
-	vector<string> iter = searcher->search(cmdString);
+	const SchCmd cmdString = { BLANK, NAME_LAST, "NTAWR" };
+	Searcher* searcher = searcherManager->getSearcher(&cmdString);
+	vector<string> iter = searcher->search(&cmdString);
 	EXPECT_EQ("60112609", iter[0]);
 }
 TEST_F(SearcherTest, nameOptionFSearchTest) {
-	const CmdString cmdString = { "", "-f", "name","FB", "","","","" };
-	Searcher* searcher = searcherManager->getSearcher(cmdString);
-	vector<string> iter = searcher->search(cmdString);
+	const SchCmd cmdString = { BLANK, NAME_FIRST, "FB" };
+	Searcher* searcher = searcherManager->getSearcher(&cmdString);
+	vector<string> iter = searcher->search(&cmdString);
 	EXPECT_EQ("60112609", iter[0]);
 }
 
 TEST_F(SearcherTest, phoneNumOptionLSearchTest) {
-	const CmdString cmdString = { "", "-m", "phoneNum","5645", "","","","" };
-	Searcher* searcher = searcherManager->getSearcher(cmdString);
-	vector<string> iter = searcher->search(cmdString);
+	const SchCmd cmdString = { BLANK, PHONENUM_MIDDLE, "5645" };
+	Searcher* searcher = searcherManager->getSearcher(&cmdString);
+	vector<string> iter = searcher->search(&cmdString);
 	EXPECT_EQ("60112609", iter[0]);
 }
 TEST_F(SearcherTest, phoneNumOptionFSearchTest) {
-	const CmdString cmdString = { "", "-l", "phoneNum","6122", "","","","" };
-	Searcher* searcher = searcherManager->getSearcher(cmdString);
-	vector<string> iter = searcher->search(cmdString);
+	const SchCmd cmdString = { BLANK, PHONENUM_BACK, "6122" };
+	Searcher* searcher = searcherManager->getSearcher(&cmdString);
+	vector<string> iter = searcher->search(&cmdString);
 	EXPECT_EQ("60112609", iter[0]);
 }
 
 TEST_F(SearcherTest, birthdayOptionYSearchTest) {
-	const CmdString cmdString = { "", "-y", "birthday","1977", "","","","" };
-	Searcher* searcher = searcherManager->getSearcher(cmdString);
-	vector<string> iter = searcher->search(cmdString);
+	const SchCmd cmdString = { BLANK, BIRTHDAY_YEAR, "1977" };
+	Searcher* searcher = searcherManager->getSearcher(&cmdString);
+	vector<string> iter = searcher->search(&cmdString);
 	EXPECT_EQ(2, iter.size());
 }
 TEST_F(SearcherTest, birthdayOptionMSearchTest) {
-	const CmdString cmdString = { "", "-m", "birthday","12", "","","","" };
-	Searcher* searcher = searcherManager->getSearcher(cmdString);
-	vector<string> iter = searcher->search(cmdString);
+	const SchCmd cmdString = { BLANK, BIRTHDAY_MONTH, "12" };
+	Searcher* searcher = searcherManager->getSearcher(&cmdString);
+	vector<string> iter = searcher->search(&cmdString);
 	EXPECT_EQ(2, iter.size());
 }
 
 TEST_F(SearcherTest, birthdayOptionDSearchTest) {
-	const CmdString cmdString = { "", "-d", "birthday","11", "","","","" };
-	Searcher* searcher = searcherManager->getSearcher(cmdString);
-	vector<string> iter = searcher->search(cmdString);
+	const SchCmd cmdString = { BLANK, BIRTHDAY_DATE, "11" };
+	Searcher* searcher = searcherManager->getSearcher(&cmdString);
+	vector<string> iter = searcher->search(&cmdString);
 	EXPECT_EQ(2, iter.size());
 }
 #endif
