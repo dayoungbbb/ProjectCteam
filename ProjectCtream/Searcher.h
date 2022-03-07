@@ -6,78 +6,79 @@
 
 class Searcher {
 public:
-    Searcher(list<Employee>* pDataBase) : pDataBase_(pDataBase) {}
+    Searcher(map<string, Employee>* pDataBase, vector<multimap<string, string>>* columeMap) : pDataBase_(pDataBase), columeMap_(columeMap) {}
     virtual ~Searcher() {}
-    virtual prioirtyQ search(const CmdString& cmdString) const = 0;
+    virtual vector<string> search(const CmdString& cmdString) const = 0;
 
 protected:
-    list<Employee>* pDataBase_;
+    map<string, Employee>* pDataBase_;
+    vector<multimap<string, string>>* columeMap_;
 };
 
 class EmployeeNumSearcher : public Searcher {
 public:
-    EmployeeNumSearcher(list<Employee>* pDataBase) : Searcher(pDataBase) {}
+    EmployeeNumSearcher(map<string, Employee>* pDataBase, vector<multimap<string, string>>* columeMap) : Searcher(pDataBase, columeMap) {}
     ~EmployeeNumSearcher() {}
 private:
-    virtual prioirtyQ search(const CmdString& cmdString) const override;
+    virtual vector<string> search(const CmdString& cmdString) const override;
 };
 
 class NameNumSearcher : public Searcher {
 public:
-    NameNumSearcher(list<Employee>* pDataBase) : Searcher(pDataBase) {}
+    NameNumSearcher(map<string, Employee>* pDataBase, vector<multimap<string, string>>* columeMap) : Searcher(pDataBase, columeMap) {}
     ~NameNumSearcher() {}
 private:
-    virtual prioirtyQ search(const CmdString& cmdString) const override;
+    virtual vector<string> search(const CmdString& cmdString) const override;
     string getInfo(const Name name, const string option) const;
 };
 
 class ClSearcher : public Searcher {
 public:
-    ClSearcher(list<Employee>* pDataBase) : Searcher(pDataBase) {}
+    ClSearcher(map<string, Employee>* pDataBase, vector<multimap<string, string>>* columeMap) : Searcher(pDataBase, columeMap) {}
     ~ClSearcher() {}
 private:
-    virtual prioirtyQ search(const CmdString& cmdString) const override;
+    virtual vector<string> search(const CmdString& cmdString) const override;
 };
 
 class PhoneNumSearcher : public Searcher {
 public:
-    PhoneNumSearcher(list<Employee>* pDataBase) : Searcher(pDataBase) {}
+    PhoneNumSearcher(map<string, Employee>* pDataBase, vector<multimap<string, string>>* columeMap) : Searcher(pDataBase, columeMap) {}
     ~PhoneNumSearcher() {}
 private:
-    virtual prioirtyQ search(const CmdString& cmdString) const override;
+    virtual vector<string> search(const CmdString& cmdString) const override;
     string getInfo(const PhoneNum phoneNum, const string option) const;
 
 };
 
 class BirthdaySearcher : public Searcher {
 public:
-    BirthdaySearcher(list<Employee>* pDataBase) : Searcher(pDataBase) {}
+    BirthdaySearcher(map<string, Employee>* pDataBase, vector<multimap<string, string>>* columeMap) : Searcher(pDataBase, columeMap) {}
     ~BirthdaySearcher() {}
 private:
-    virtual prioirtyQ search(const CmdString& cmdString) const override;
+    virtual vector<string> search(const CmdString& cmdString) const override;
     string getInfo(const Bday bday, const string option) const;
 
 };
 
 class CertiSearcher : public Searcher {
 public:
-    CertiSearcher(list<Employee>* pDataBase) : Searcher(pDataBase) {}
+    CertiSearcher(map<string, Employee>* pDataBase, vector<multimap<string, string>>* columeMap) : Searcher(pDataBase, columeMap) {}
     ~CertiSearcher() {}
 private:
 
-    virtual prioirtyQ search(const CmdString& cmdString) const override;
+    virtual vector<string> search(const CmdString& cmdString) const override;
 };
 
 
 class SearcherManager {
 public:
-    SearcherManager(list<Employee>* pDataBase) {
-        searcher_[EMPLOYEENUM] = new EmployeeNumSearcher(pDataBase);
-        searcher_[NAME] = new NameNumSearcher(pDataBase);
-        searcher_[CL] = new ClSearcher(pDataBase);
-        searcher_[PHONENUM] = new PhoneNumSearcher(pDataBase);
-        searcher_[BIRTHDAY] = new BirthdaySearcher(pDataBase);
-        searcher_[CERTI] = new CertiSearcher(pDataBase);
+    SearcherManager(map<string, Employee>* pDataBase, vector<multimap<string, string>>* columeMap) {
+        searcher_[EMPLOYEENUM] = new EmployeeNumSearcher(pDataBase, columeMap);
+        searcher_[NAME] = new NameNumSearcher(pDataBase, columeMap);
+        searcher_[CL] = new ClSearcher(pDataBase, columeMap);
+        searcher_[PHONENUM] = new PhoneNumSearcher(pDataBase, columeMap);
+        searcher_[BIRTHDAY] = new BirthdaySearcher(pDataBase, columeMap);
+        searcher_[CERTI] = new CertiSearcher(pDataBase, columeMap);
     }
     ~SearcherManager() {
         for (auto& op : searcher_) {
@@ -89,6 +90,6 @@ public:
     Searcher* getSearcher(const CmdString& cmdString) const ;
 
 private:
-    Searcher* searcher_[MAX_COLUMNTYPE];
+    Searcher* searcher_[MAX_MAINCOLUMNTYPE];
 
 };
