@@ -2,7 +2,6 @@
 #include "../ProjectCtream/DataBaseManager.cpp"
 #include <vector>
 
-#if 0
 class DataBaseManagerTest : public ::testing::Test
 {
 public:
@@ -50,4 +49,3 @@ TEST_F(DataBaseManagerTest, operateTest) {
 
     EXPECT_EQ(getOutputFileCheckSum("output_DataBaseManagerTest.txt"), getOutputFileCheckSum("golden_DataBaseManagerTest.txt"));
 }
-#endif
