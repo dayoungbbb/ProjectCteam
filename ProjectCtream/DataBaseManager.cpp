@@ -11,14 +11,18 @@
 #include "DataBaseManager.h"
 
 DataBaseManager::DataBaseManager() {
+	operatorManager = nullptr;
 	operatorManager = new OperatorManager(&dataBase);
+	searcherManager = nullptr;
 	searcherManager = new SearcherManager(&dataBase);
 
 }
 
 DataBaseManager::~DataBaseManager() {
 	delete operatorManager;
+	operatorManager = nullptr;
 	delete searcherManager;
+	searcherManager = nullptr;
 }
 
 void DataBaseManager::operateSearcher(int cmdType, const CmdString cmdString, prioirtyQ&searchQ) {
