@@ -65,16 +65,22 @@ void ModOperator::operate(vector<string>& searchQ, void* cmdString)
         delColumnMap(employee);
 
         if (modCmd->condType == NAME) {
-            parseName(modCmd->cond, employee.name.firstName, employee.name.lastName);
+            vector<string> parseStr = split(modCmd->cond, ' ');
+            employee.name.firstName = parseStr[0];
+            employee.name.lastName = parseStr[1];
         }
         else if (modCmd->condType == CL) {
             employee.cl = modCmd->cond;
         }
         else if (modCmd->condType == PHONENUM) {
-            parsePhoneNum(modCmd->cond, employee.phoneNum.middle, employee.phoneNum.last);
+            vector<string> parseStr = split(modCmd->cond, '-');
+            employee.phoneNum.middle = parseStr[1];
+            employee.phoneNum.last = parseStr[2];
         }
         else if (modCmd->condType == BIRTHDAY) {
-            parseBirthday(modCmd->cond, employee.bday.year, employee.bday.month, employee.bday.day);
+            employee.bday.year = modCmd->cond.substr(0, 4);
+            employee.bday.month = modCmd->cond.substr(4, 2);
+            employee.bday.day = modCmd->cond.substr(6, 2);
         }
         else if (modCmd->condType == CERTI) {
             employee.certi = modCmd->cond;
@@ -85,6 +91,18 @@ void ModOperator::operate(vector<string>& searchQ, void* cmdString)
 
         addColumnMap(employee);
     }
+}
+
+vector<string> ModOperator::split(string input, char delimiter) {
+    vector<string> answer;
+    stringstream ss(input);
+    string temp;
+
+    while (getline(ss, temp, delimiter)) {
+        answer.push_back(temp);
+    }
+
+    return answer;
 }
 
 void DelOperator::operate(vector<string>& searchQ, void* cmdString)

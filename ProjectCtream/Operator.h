@@ -36,6 +36,7 @@ public:
 
 private:
     virtual void operate(vector<string>& searchQ, void* cmdString) override;
+    vector<string> split(string input, char delimiter);
 };
 
 class DelOperator : public Operator {
