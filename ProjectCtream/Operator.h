@@ -3,16 +3,16 @@
 #include "cmdParameter.h"
 class Operator {
 public:
-    Operator(vector<Employee>* dataBase_) { dataBase = dataBase_; }
+    Operator(list<Employee>* dataBase_) { dataBase = dataBase_; }
     virtual void operate(prioirtyQ& searchQ, CmdString& cmdString) = 0;
 
 protected:
-    vector<Employee>* dataBase;
+    list<Employee>* dataBase;
 };
 
 class AddOperator : public Operator {
 public:
-    AddOperator(vector<Employee>* dataBase) : Operator(dataBase) {}
+    AddOperator(list<Employee>* dataBase) : Operator(dataBase) {}
 
 private:
     virtual void operate(prioirtyQ& searchQ, CmdString& cmdString) override;
@@ -20,7 +20,7 @@ private:
 
 class ModOperator : public Operator {
 public:
-    ModOperator(vector<Employee>* dataBase) : Operator(dataBase) {}
+    ModOperator(list<Employee>* dataBase) : Operator(dataBase) {}
 
 private:
     virtual void operate(prioirtyQ& searchQ, CmdString& cmdString) override;
@@ -28,7 +28,7 @@ private:
 
 class DelOperator : public Operator {
 public:
-    DelOperator(vector<Employee>* dataBase) : Operator(dataBase) {}
+    DelOperator(list<Employee>* dataBase) : Operator(dataBase) {}
 
 private:
     virtual void operate(prioirtyQ& searchQ, CmdString& cmdString) override;
@@ -36,7 +36,7 @@ private:
 
 class OperatorManager {
 public:
-    OperatorManager(vector<Employee>* dataBase) {
+    OperatorManager(list<Employee>* dataBase) {
         myOperator[ADD] = new AddOperator(dataBase);
         myOperator[MOD] = new ModOperator(dataBase);
         myOperator[DEL] = new DelOperator(dataBase);

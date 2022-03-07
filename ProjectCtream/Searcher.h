@@ -6,17 +6,17 @@
 
 class Searcher {
 public:
-    Searcher(vector<Employee>* pDataBase) : pDataBase_(pDataBase) {}
+    Searcher(list<Employee>* pDataBase) : pDataBase_(pDataBase) {}
     virtual ~Searcher() {}
     virtual prioirtyQ search(const CmdString& cmdString) const = 0;
 
 protected:
-    vector<Employee>* pDataBase_;
+    list<Employee>* pDataBase_;
 };
 
 class EmployeeNumSearcher : public Searcher {
 public:
-    EmployeeNumSearcher(vector<Employee>* pDataBase) : Searcher(pDataBase) {}
+    EmployeeNumSearcher(list<Employee>* pDataBase) : Searcher(pDataBase) {}
     ~EmployeeNumSearcher() {}
 private:
     virtual prioirtyQ search(const CmdString& cmdString) const override;
@@ -24,7 +24,7 @@ private:
 
 class NameNumSearcher : public Searcher {
 public:
-    NameNumSearcher(vector<Employee>* pDataBase) : Searcher(pDataBase) {}
+    NameNumSearcher(list<Employee>* pDataBase) : Searcher(pDataBase) {}
     ~NameNumSearcher() {}
 private:
     virtual prioirtyQ search(const CmdString& cmdString) const override;
@@ -32,7 +32,7 @@ private:
 
 class ClSearcher : public Searcher {
 public:
-    ClSearcher(vector<Employee>* pDataBase) : Searcher(pDataBase) {}
+    ClSearcher(list<Employee>* pDataBase) : Searcher(pDataBase) {}
     ~ClSearcher() {}
 private:
     virtual prioirtyQ search(const CmdString& cmdString) const override;
@@ -40,7 +40,7 @@ private:
 
 class PhoneNumSearcher : public Searcher {
 public:
-    PhoneNumSearcher(vector<Employee>* pDataBase) : Searcher(pDataBase) {}
+    PhoneNumSearcher(list<Employee>* pDataBase) : Searcher(pDataBase) {}
     ~PhoneNumSearcher() {}
 private:
     virtual prioirtyQ search(const CmdString& cmdString) const override;
@@ -48,7 +48,7 @@ private:
 
 class BirthdaySearcher : public Searcher {
 public:
-    BirthdaySearcher(vector<Employee>* pDataBase) : Searcher(pDataBase) {}
+    BirthdaySearcher(list<Employee>* pDataBase) : Searcher(pDataBase) {}
     ~BirthdaySearcher() {}
 private:
     virtual prioirtyQ search(const CmdString& cmdString) const override;
@@ -56,7 +56,7 @@ private:
 
 class CertiSearcher : public Searcher {
 public:
-    CertiSearcher(vector<Employee>* pDataBase) : Searcher(pDataBase) {}
+    CertiSearcher(list<Employee>* pDataBase) : Searcher(pDataBase) {}
     ~CertiSearcher() {}
 private:
 
@@ -66,7 +66,7 @@ private:
 
 class SearcherManager {
 public:
-    SearcherManager(vector<Employee>* pDataBase) {
+    SearcherManager(list<Employee>* pDataBase) {
         
         pEmployeeNumSearcher_ = new EmployeeNumSearcher(pDataBase);
         pNameNumSearcher_ = new NameNumSearcher(pDataBase);

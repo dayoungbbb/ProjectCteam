@@ -15,7 +15,7 @@ void AddOperator::operate(prioirtyQ& searchQ, CmdString& cmdString)
 void ModOperator::operate(prioirtyQ& searchQ, CmdString& cmdString)
 {
     while (!searchQ.empty()) {
-        vector<Employee>::iterator iter = searchQ.top();
+        list<Employee>::iterator iter = searchQ.top();
 
         if (cmdString.col3 == "employeeNum") {
             throw invalid_argument("사원번호는 바꿀 수 없습니다");
@@ -46,7 +46,7 @@ void ModOperator::operate(prioirtyQ& searchQ, CmdString& cmdString)
 void DelOperator::operate(prioirtyQ& searchQ, CmdString& cmdString)
 {
     while (!searchQ.empty()) {
-        vector<Employee>::iterator iter = searchQ.top();
+        list<Employee>::iterator iter = searchQ.top();
 
         dataBase->erase(iter);
 

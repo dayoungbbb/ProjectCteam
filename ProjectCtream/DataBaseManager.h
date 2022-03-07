@@ -18,5 +18,5 @@ private:
 
 	Printer printer;
 
-	std::vector<Employee> dataBase;
+	std::list<Employee> dataBase;
 };

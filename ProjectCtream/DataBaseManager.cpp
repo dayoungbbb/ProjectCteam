@@ -1,7 +1,7 @@
 #include <queue>
 #include <vector>
 #include <fstream>
-#include <unordered_map>
+#include <list>
 #include "define.h"
 #include "Employee.h"
 #include "Printer.h"
@@ -55,7 +55,7 @@ void DataBaseManager::operate(std::string inputFileName, std::string outputFileN
 	if (!inputFile.is_open()) {
 		throw invalid_argument("input file open failed");
 	}
-	
+
 	bool isFirst = true;
 	int cnt = 0;
 	while (!inputFile.eof()) {
