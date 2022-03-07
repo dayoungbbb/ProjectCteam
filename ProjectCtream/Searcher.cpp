@@ -1,8 +1,8 @@
 #include "Searcher.h"
-prioirtyQ EmployeeNumSearcher::search(const void* cmdString) const
+prioirtyQ EmployeeNumSearcher::search(void* cmdString) const
 {
     prioirtyQ searchResult;
-    SchCmd* schCmd = (SchCmd*)cmdString;
+    SchCmd* schCmd = reinterpret_cast<SchCmd*>(cmdString);
     for (employeeIter iter = pDataBase_->begin(); iter != pDataBase_->end(); iter++) {
         if ((*iter).employeeNum == schCmd->cond) {
             searchResult.emplace(iter);
@@ -12,10 +12,10 @@ prioirtyQ EmployeeNumSearcher::search(const void* cmdString) const
     return searchResult;
 }
 
-prioirtyQ NameNumSearcher::search(const void* cmdString) const
+prioirtyQ NameNumSearcher::search(void* cmdString) const
 {
     prioirtyQ searchResult;
-    SchCmd* schCmd = (SchCmd*)cmdString;
+    SchCmd* schCmd = reinterpret_cast<SchCmd*>(cmdString);
     for (employeeIter iter = pDataBase_->begin(); iter != pDataBase_->end(); iter++) {
         if (schCmd->cond == getInfo((*iter).name, schCmd->secondOptionType)) {
             searchResult.emplace(iter);
@@ -37,10 +37,10 @@ string NameNumSearcher::getInfo(const Name name, const int option) const
     return name.firstName + " " + name.lastName;
 }
 
-prioirtyQ ClSearcher::search(const void* cmdString) const
+prioirtyQ ClSearcher::search(void* cmdString) const
 {
     prioirtyQ searchResult;
-    SchCmd* schCmd = (SchCmd*)cmdString;
+    SchCmd* schCmd = reinterpret_cast<SchCmd*>(cmdString);
     for (employeeIter iter = pDataBase_->begin(); iter != pDataBase_->end(); iter++) {
         if ((*iter).cl == schCmd->cond) {
             searchResult.emplace(iter);
@@ -50,10 +50,10 @@ prioirtyQ ClSearcher::search(const void* cmdString) const
     return searchResult;
 }
 
-prioirtyQ PhoneNumSearcher::search(const void* cmdString) const
+prioirtyQ PhoneNumSearcher::search(void* cmdString) const
 {
     prioirtyQ searchResult;
-    SchCmd* schCmd = (SchCmd*)cmdString;
+    SchCmd* schCmd = reinterpret_cast<SchCmd*>(cmdString);
     for (employeeIter iter = pDataBase_->begin(); iter != pDataBase_->end(); iter++) {
         if (schCmd->cond == getInfo((*iter).phoneNum, schCmd->secondOptionType)) {
             searchResult.emplace(iter);
@@ -75,10 +75,10 @@ string PhoneNumSearcher::getInfo(const PhoneNum phoneNum, const int option) cons
     return "010-" + phoneNum.middle + "-" + phoneNum.last;
 }
 
-prioirtyQ BirthdaySearcher::search(const void* cmdString) const
+prioirtyQ BirthdaySearcher::search(void* cmdString) const
 {
     prioirtyQ searchResult;
-    SchCmd* schCmd = (SchCmd*)cmdString;
+    SchCmd* schCmd = reinterpret_cast<SchCmd*>(cmdString);
     for (employeeIter iter = pDataBase_->begin(); iter != pDataBase_->end(); iter++) {
         if (schCmd->cond == getInfo((*iter).bday, schCmd->secondOptionType)) {
             searchResult.emplace(iter);
@@ -103,10 +103,10 @@ string BirthdaySearcher::getInfo(const Bday bday, const int option) const
     return bday.year + bday.month + bday.day;
 }
 
-prioirtyQ CertiSearcher::search(const void* cmdString) const
+prioirtyQ CertiSearcher::search(void* cmdString) const
 {
     prioirtyQ searchResult;
-    SchCmd* schCmd = (SchCmd*)cmdString;
+    SchCmd* schCmd = reinterpret_cast<SchCmd*>(cmdString);
     for (employeeIter iter = pDataBase_->begin(); iter != pDataBase_->end(); iter++) {
         if ((*iter).certi == schCmd->cond) {
             searchResult.emplace(iter);
@@ -115,26 +115,8 @@ prioirtyQ CertiSearcher::search(const void* cmdString) const
 
     return searchResult;
 }
-Searcher* SearcherManager::getSearcher(const void* cmdString) const
+Searcher* SearcherManager::getSearcher(void* cmdString) const
 {
-    SchCmd* schCmd = (SchCmd*)cmdString;
-    if (schCmd->condType == EMPLOYEENUM) {
-        return searcher_[EMPLOYEENUM];
-    }
-    else if (schCmd->condType == NAME) {
-        return searcher_[NAME];
-    }
-    else if (schCmd->condType == CL) {
-        return searcher_[CL];
-    }
-    else if (schCmd->condType == PHONENUM) {
-        return searcher_[PHONENUM];
-    }
-    else if (schCmd->condType == BIRTHDAY) {
-        return searcher_[BIRTHDAY];
-    }
-    else if (schCmd->condType == CERTI) {
-        return searcher_[CERTI];
-    }
-    return nullptr;
+    SchCmd* schCmd = reinterpret_cast<SchCmd*>(cmdString);
+    return searcher_[schCmd->condType];
 }

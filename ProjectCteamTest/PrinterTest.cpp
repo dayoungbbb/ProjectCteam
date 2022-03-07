@@ -48,14 +48,15 @@ protected:
     // variables
     prioirtyQ priorityQ;
     Printer printer;
-    std::vector<Employee> dataBase;
+    std::list<Employee> dataBase;
 };
 
-#if 0
+
 TEST_F(PrinterTest, printTest) {
-    priorityQ.push(dataBase.begin());
-    priorityQ.push(dataBase.begin() + 1);
-    priorityQ.push(dataBase.begin() + 2);
+    std::list<Employee>::iterator iter = dataBase.begin();
+    priorityQ.push(iter);
+    priorityQ.push(++iter);
+    priorityQ.push(++iter);
 
     bool isFirst = true;
     printer.setOutputFileName("output_PrinterTest.txt");
@@ -63,13 +64,12 @@ TEST_F(PrinterTest, printTest) {
 
     EXPECT_EQ(getOutputFileCheckSum("output_PrinterTest.txt"), getOutputFileCheckSum("golden_PrinterTest_1.txt"));
 
-    priorityQ.push(dataBase.begin() + 3);
-    priorityQ.push(dataBase.begin() + 4);
-    priorityQ.push(dataBase.begin() + 5);
-    priorityQ.push(dataBase.begin() + 6);
-
-    printer.print(DEL, "-p", priorityQ, isFirst);
+    priorityQ.push(++iter);
+    priorityQ.push(++iter);
+    priorityQ.push(++iter);
+    priorityQ.push(++iter);
+    SchCmd schCmd = { PRINT, BLANK, NAME, "DSF FDF" };
+    printer.print(DEL, &schCmd, priorityQ, isFirst);
 
     EXPECT_EQ(getOutputFileCheckSum("output_PrinterTest.txt"), getOutputFileCheckSum("golden_PrinterTest_2.txt"));
 }
-#endif

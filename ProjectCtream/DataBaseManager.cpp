@@ -22,7 +22,7 @@ DataBaseManager::~DataBaseManager() {
 	searcherManager = nullptr;
 }
 
-void DataBaseManager::operateSearcher(int cmdType, const void* cmdString, prioirtyQ&searchQ) {
+void DataBaseManager::operateSearcher(int cmdType, void* cmdString, prioirtyQ& searchQ) {
 	if (cmdType == ADD)
 		return;
 
@@ -69,7 +69,7 @@ void DataBaseManager::operate(std::string inputFileName, std::string outputFileN
 
 		int cmdType = cmdParameter.getCmdType();
 		void* cmdString = cmdParameter.getCmdString();
-		
+
 		prioirtyQ searchQ;
 		operateSearcher(cmdType, cmdString, searchQ);
 

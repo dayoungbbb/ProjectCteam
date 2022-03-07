@@ -2,16 +2,15 @@
 
 void AddOperator::operate(prioirtyQ& searchQ, void* cmdString)
 {
-    Employee* employee = (Employee*)cmdString;
+    Employee* employee = reinterpret_cast<Employee*>(cmdString);
     dataBase->push_back(*employee);
 }
 
 void ModOperator::operate(prioirtyQ& searchQ, void* cmdString)
 {
-    ModCmd* modCmd = (ModCmd*)cmdString;
     while (!searchQ.empty()) {
         list<Employee>::iterator iter = searchQ.top();
-
+        ModCmd* modCmd = reinterpret_cast<ModCmd*>(cmdString);
         if (modCmd->condType == EMPLOYEENUM) {
             throw invalid_argument("사원번호는 바꿀 수 없습니다");
         }

@@ -14,15 +14,15 @@ Printer::Printer() {
 	outputFileName = "";
 }
 
-void Printer::setOutputFileName(const std::string &outputFileName) {
+void Printer::setOutputFileName(const std::string& outputFileName) {
 	this->outputFileName = outputFileName;
 }
 
-void Printer::print(int cmdType, void* cmdString, prioirtyQ searchQ, bool &isFirst) {
+void Printer::print(int cmdType, void* cmdString, prioirtyQ searchQ, bool& isFirst) {
 	if (cmdType == ADD) {
 		return;
 	}
-	SchCmd* schCmd = (SchCmd*)cmdString;
+
 	std::string result("");
 	ofstream outputFile;
 	std::ios_base::open_mode openMode = isFirst ?
@@ -36,9 +36,8 @@ void Printer::print(int cmdType, void* cmdString, prioirtyQ searchQ, bool &isFir
 	if (!outputFile.is_open()) {
 		throw invalid_argument("output.txt file open failed");
 	}
-
+	SchCmd* schCmd = reinterpret_cast<SchCmd*>(cmdString);
 	int writeCount = 0;
-
 	if (schCmd->firstOptionType == PRINT) {
 		while (!searchQ.empty() && writeCount < MAX_PRINT_CNT) {
 			list<Employee>::iterator iter = searchQ.top();

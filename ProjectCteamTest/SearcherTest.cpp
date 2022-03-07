@@ -27,13 +27,13 @@ protected:
 };
 
 TEST_F(SearcherTest, nameSearchTest) {
-	const SchCmd cmdString = { BLANK, BLANK, NAME, "VXIHXOTH JHOP" };
+	SchCmd cmdString = { BLANK, BLANK, NAME, "VXIHXOTH JHOP" };
 	Searcher* searcher = searcherManager->getSearcher(&cmdString);
 	prioirtyQ iter = searcher->search(&cmdString);
 	EXPECT_EQ("15123099", iter.top()->employeeNum);
 }
 TEST_F(SearcherTest, nameOptionLSearchTest) {
-	const SchCmd cmdString = { BLANK, LAST_NAME, NAME,"NTAWR" };
+	SchCmd cmdString = { BLANK, LAST_NAME, NAME,"NTAWR" };
 	Searcher* searcher = searcherManager->getSearcher(&cmdString);
 	prioirtyQ iter = searcher->search(&cmdString);
 	string result;
@@ -42,7 +42,7 @@ TEST_F(SearcherTest, nameOptionLSearchTest) {
 	EXPECT_EQ("60112609", result);
 }
 TEST_F(SearcherTest, nameOptionFSearchTest) {
-	const SchCmd cmdString = { BLANK, FIRST_NAME, NAME,"FB" };
+	SchCmd cmdString = { BLANK, FIRST_NAME, NAME,"FB" };
 	Searcher* searcher = searcherManager->getSearcher(&cmdString);
 	prioirtyQ iter = searcher->search(&cmdString);
 	string result;
@@ -52,7 +52,7 @@ TEST_F(SearcherTest, nameOptionFSearchTest) {
 }
 
 TEST_F(SearcherTest, phoneNumOptionLSearchTest) {
-	const SchCmd cmdString = { BLANK, MIDDLE_NUM, PHONENUM, "5645" };
+	SchCmd cmdString = { BLANK, MIDDLE_NUM, PHONENUM, "5645" };
 	Searcher* searcher = searcherManager->getSearcher(&cmdString);
 	prioirtyQ iter = searcher->search(&cmdString);	string result;
 	if (!iter.empty())
@@ -60,7 +60,7 @@ TEST_F(SearcherTest, phoneNumOptionLSearchTest) {
 	EXPECT_EQ("60112609", result);
 }
 TEST_F(SearcherTest, phoneNumOptionFSearchTest) {
-	const SchCmd cmdString = { BLANK, LAST_NUM, PHONENUM,"6122" };
+	SchCmd cmdString = { BLANK, LAST_NUM, PHONENUM,"6122" };
 	Searcher* searcher = searcherManager->getSearcher(&cmdString);
 	prioirtyQ iter = searcher->search(&cmdString);	string result;
 	if (!iter.empty())
@@ -69,7 +69,7 @@ TEST_F(SearcherTest, phoneNumOptionFSearchTest) {
 }
 
 TEST_F(SearcherTest, birthdayOptionYSearchTest) {
-	const SchCmd  cmdString = { BLANK, YEAR, BIRTHDAY,"1977" };
+	SchCmd cmdString = { BLANK, YEAR, BIRTHDAY,"1977" };
 	Searcher* searcher = searcherManager->getSearcher(&cmdString);
 	prioirtyQ iter = searcher->search(&cmdString);	string result;
 	if (!iter.empty())
@@ -77,7 +77,7 @@ TEST_F(SearcherTest, birthdayOptionYSearchTest) {
 	EXPECT_EQ("60112609", result);
 }
 TEST_F(SearcherTest, birthdayOptionMSearchTest) {
-	const SchCmd cmdString = { BLANK, MONTH, BIRTHDAY, "12" };
+	SchCmd cmdString = { BLANK, MONTH, BIRTHDAY, "12" };
 	Searcher* searcher = searcherManager->getSearcher(&cmdString);
 	prioirtyQ iter = searcher->search(&cmdString);	string result;
 	if (!iter.empty())
@@ -86,7 +86,7 @@ TEST_F(SearcherTest, birthdayOptionMSearchTest) {
 }
 
 TEST_F(SearcherTest, birthdayOptionDSearchTest) {
-	const SchCmd cmdString = { BLANK, DAY, BIRTHDAY,"11" };
+	SchCmd cmdString = { BLANK, DAY, BIRTHDAY,"11" };
 	Searcher* searcher = searcherManager->getSearcher(&cmdString);
 	prioirtyQ iter = searcher->search(&cmdString);	string result;
 	if (!iter.empty())

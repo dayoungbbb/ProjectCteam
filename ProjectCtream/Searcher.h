@@ -8,7 +8,7 @@ class Searcher {
 public:
     Searcher(list<Employee>* pDataBase) : pDataBase_(pDataBase) {}
     virtual ~Searcher() {}
-    virtual prioirtyQ search(const void* cmdString) const = 0;
+    virtual prioirtyQ search(void* cmdString) const = 0;
 
 protected:
     list<Employee>* pDataBase_;
@@ -19,7 +19,7 @@ public:
     EmployeeNumSearcher(list<Employee>* pDataBase) : Searcher(pDataBase) {}
     ~EmployeeNumSearcher() {}
 private:
-    virtual prioirtyQ search(const void* cmdString) const override;
+    virtual prioirtyQ search(void* cmdString) const override;
 };
 
 class NameNumSearcher : public Searcher {
@@ -27,7 +27,7 @@ public:
     NameNumSearcher(list<Employee>* pDataBase) : Searcher(pDataBase) {}
     ~NameNumSearcher() {}
 private:
-    virtual prioirtyQ search(const void* cmdString) const override;
+    virtual prioirtyQ search(void* cmdString) const override;
     string getInfo(const Name name, const int option) const;
 };
 
@@ -36,7 +36,7 @@ public:
     ClSearcher(list<Employee>* pDataBase) : Searcher(pDataBase) {}
     ~ClSearcher() {}
 private:
-    virtual prioirtyQ search(const void* cmdString) const override;
+    virtual prioirtyQ search(void* cmdString) const override;
 };
 
 class PhoneNumSearcher : public Searcher {
@@ -44,7 +44,7 @@ public:
     PhoneNumSearcher(list<Employee>* pDataBase) : Searcher(pDataBase) {}
     ~PhoneNumSearcher() {}
 private:
-    virtual prioirtyQ search(const void* cmdString) const override;
+    virtual prioirtyQ search(void* cmdString) const override;
     string getInfo(const PhoneNum phoneNum, const int option) const;
 
 };
@@ -54,7 +54,7 @@ public:
     BirthdaySearcher(list<Employee>* pDataBase) : Searcher(pDataBase) {}
     ~BirthdaySearcher() {}
 private:
-    virtual prioirtyQ search(const void* cmdString) const override;
+    virtual prioirtyQ search(void* cmdString) const override;
     string getInfo(const Bday bday, const int option) const;
 
 };
@@ -65,7 +65,7 @@ public:
     ~CertiSearcher() {}
 private:
 
-    virtual prioirtyQ search(const void* cmdString) const override;
+    virtual prioirtyQ search(void* cmdString) const override;
 };
 
 
@@ -86,7 +86,7 @@ public:
         }
     }
 
-    Searcher* getSearcher(const void* cmdString) const ;
+    Searcher* getSearcher(void* cmdString) const;
 
 private:
     Searcher* searcher_[MAX_COLUMNTYPE];
