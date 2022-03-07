@@ -45,13 +45,13 @@ TEST_F(OperatorTest, ModTest) {
 	auto i = 0;
 	for (auto record : dataBase) {
 
-		if(record.firstName == "FB" && record.lastName == "NTAWR"){
+		if(record.name.firstName == "FB" && record.name.lastName == "NTAWR"){
 			if (i > 0) {
 				result += "\n";
 			}
-			result += (record.employeeNum + "," + record.firstName + " " + record.lastName + "," + record.cl + ",010-" 
-				+ record.middleOfPhoneNum + "-" + record.backOfPhoneNum + "," + record.yearOfBday + record.monthOfBday
-				+ record.dateOfBday + "," + record.certi);
+			result += (record.employeeNum + "," + record.name.firstName + " " + record.name.lastName + "," + record.cl + ",010-" 
+				+ record.phoneNum.middle + "-" + record.phoneNum.last + "," + record.bday.year + record.bday.month
+				+ record.bday.day + "," + record.certi);
 			i++;
 		}
 	}
@@ -91,13 +91,13 @@ TEST_F(OperatorTest, AddTest) {
 
 	for (auto record : dataBase) {
 
-		if (record.firstName == "SRERLALH" && record.lastName == "HMEF") {
+		if (record.name.firstName == "SRERLALH" && record.name.lastName == "HMEF") {
 			if (i > 0) {
 				result += "\n";
 			}
-			result += (record.employeeNum + "," + record.firstName + " " + record.lastName + "," + record.cl + ",010-"
-				+ record.middleOfPhoneNum + "-" + record.backOfPhoneNum + "," + record.yearOfBday + record.monthOfBday
-				+ record.dateOfBday + "," + record.certi);
+			result += (record.employeeNum + "," + record.name.firstName + " " + record.name.lastName + "," + record.cl + ",010-"
+				+ record.phoneNum.middle + "-" + record.phoneNum.last + "," + record.bday.year + record.bday.month
+				+ record.bday.day + "," + record.certi);
 			i++;
 		}
 	}

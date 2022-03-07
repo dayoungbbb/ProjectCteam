@@ -45,10 +45,10 @@ void Printer::print(int cmdType, std::string op1, prioirtyQ searchQ, bool &isFir
 
 			result += CmdTypeStr[cmdType] + ",";
 			result += (*iter).employeeNum + ",";
-			result += (*iter).lastName + " " + (*iter).firstName + ",";
+			result += (*iter).name.lastName + " " + (*iter).name.firstName + ",";
 			result += (*iter).cl + ",";
-			result += "010-" + (*iter).middleOfPhoneNum + "-" + (*iter).backOfPhoneNum + ",";
-			result += (*iter).yearOfBday + (*iter).monthOfBday + (*iter).dateOfBday + ",";
+			result += "010-" + (*iter).phoneNum.middle + "-" + (*iter).phoneNum.last + ",";
+			result += (*iter).bday.year + (*iter).bday.month + (*iter).bday.day + ",";
 			result += (*iter).certi + "\n";
 
 			writeCount++;
