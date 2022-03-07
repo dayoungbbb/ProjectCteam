@@ -12,13 +12,13 @@ public:
 protected:
     virtual void SetUp() override
     {
-        dataBase.push_back({ "13013973", "Kim", "Wooyeon", "CL3", "4600", "0297", "1988", "01", "27", "PRO" });
-        dataBase.push_back({ "99765451", "Kim", "Test1", "CL4", "3333", "4444", "1980", "03", "01", "EXP" });
-        dataBase.push_back({ "18001234", "Kim", "JY", "CL2",  "7777", "8888", "1999", "06", "02", "PRO" });
-        dataBase.push_back({ "98123456", "Park","BJ",  "CL1", "1234", "5678", "2000", "07", "01", "PRO" });
-        dataBase.push_back({ "11765432", "Kim", "JY", "CL3",  "8769", "1234", "1983", "05", "02", "ADV" });
-        dataBase.push_back({ "07123456", "Park","TY",  "CL4", "7777", "5544", "1977", "08", "09", "EXP" });
-        dataBase.push_back({ "21330234", "Park","JY",  "CL1", "2233", "4456", "2003", "05", "10", "EXP" });
+        dataBase.push_back({ "13013973", "Wooyeon", "Kim", "CL3", "4600", "0297", "1988", "01", "27", "PRO" });
+        dataBase.push_back({ "99765451", "Test1", "Kim", "CL4", "3333", "4444", "1980", "03", "01", "EXP" });
+        dataBase.push_back({ "18001234", "JY", "Kim", "CL2",  "7777", "8888", "1999", "06", "02", "PRO" });
+        dataBase.push_back({ "98123456", "BJ", "Park", "CL1", "1234", "5678", "2000", "07", "01", "PRO" });
+        dataBase.push_back({ "11765432", "JY", "Kim", "CL3",  "8769", "1234", "1983", "05", "02", "ADV" });
+        dataBase.push_back({ "07123456", "TY", "Park", "CL4", "7777", "5544", "1977", "08", "09", "EXP" });
+        dataBase.push_back({ "21330234", "JY", "Park", "CL1", "2233", "4456", "2003", "05", "10", "EXP" });
     }
 
     virtual void TearDown() override

@@ -45,7 +45,7 @@ void Printer::print(int cmdType, std::string op1, prioirtyQ searchQ, bool &isFir
 
 			result += CmdTypeStr[cmdType] + ",";
 			result += (*iter).employeeNum + ",";
-			result += (*iter).lastName + " " + (*iter).firstName + ",";
+			result += (*iter).firstName + " " + (*iter).lastName + ",";
 			result += (*iter).cl + ",";
 			result += "010-" + (*iter).middleOfPhoneNum + "-" + (*iter).backOfPhoneNum + ",";
 			result += (*iter).yearOfBday + (*iter).monthOfBday + (*iter).dateOfBday + ",";
