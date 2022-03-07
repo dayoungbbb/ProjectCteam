@@ -22,7 +22,7 @@ DataBaseManager::~DataBaseManager() {
 	searcherManager = nullptr;
 }
 
-void DataBaseManager::operateSearcher(int cmdType, const CmdString cmdString, prioirtyQ&searchQ) {
+void DataBaseManager::operateSearcher(int cmdType, const void* cmdString, prioirtyQ&searchQ) {
 	if (cmdType == ADD)
 		return;
 
@@ -34,7 +34,7 @@ void DataBaseManager::operateSearcher(int cmdType, const CmdString cmdString, pr
 	searchQ = dataBaseSearcher->search(cmdString);
 }
 
-void DataBaseManager::operateOperator(int cmdType, CmdString cmdString, prioirtyQ& searchQ) {
+void DataBaseManager::operateOperator(int cmdType, void* cmdString, prioirtyQ& searchQ) {
 	if (cmdType == SCH)
 		return;
 
@@ -68,13 +68,13 @@ void DataBaseManager::operate(std::string inputFileName, std::string outputFileN
 		}
 
 		int cmdType = cmdParameter.getCmdType();
-		CmdString cmdString = cmdParameter.getCmdString();
+		void* cmdString = cmdParameter.getCmdString();
 		
 		prioirtyQ searchQ;
 		operateSearcher(cmdType, cmdString, searchQ);
 
 		printer.setOutputFileName(outputFileName);
-		printer.print(cmdType, cmdString.op1, searchQ, isFirst);
+		printer.print(cmdType, cmdString, searchQ, isFirst);
 
 		operateOperator(cmdType, cmdString, searchQ);
 	}

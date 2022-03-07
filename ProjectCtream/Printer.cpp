@@ -18,11 +18,11 @@ void Printer::setOutputFileName(const std::string &outputFileName) {
 	this->outputFileName = outputFileName;
 }
 
-void Printer::print(int cmdType, std::string op1, prioirtyQ searchQ, bool &isFirst) {
+void Printer::print(int cmdType, void* cmdString, prioirtyQ searchQ, bool &isFirst) {
 	if (cmdType == ADD) {
 		return;
 	}
-
+	SchCmd* schCmd = (SchCmd*)cmdString;
 	std::string result("");
 	ofstream outputFile;
 	std::ios_base::open_mode openMode = isFirst ?
@@ -38,7 +38,8 @@ void Printer::print(int cmdType, std::string op1, prioirtyQ searchQ, bool &isFir
 	}
 
 	int writeCount = 0;
-	if (op1 == "-p") {
+
+	if (schCmd->firstOptionType == PRINT) {
 		while (!searchQ.empty() && writeCount < MAX_PRINT_CNT) {
 			list<Employee>::iterator iter = searchQ.top();
 			searchQ.pop();

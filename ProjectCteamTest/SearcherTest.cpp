@@ -27,24 +27,24 @@ protected:
 };
 
 TEST_F(SearcherTest, nameSearchTest) {
-	const CmdString cmdString = { "", "", "name","VXIHXOTH JHOP", "","","","" };
-	Searcher* searcher = searcherManager->getSearcher(cmdString);
-	prioirtyQ iter = searcher->search(cmdString);
+	const SchCmd cmdString = { BLANK, BLANK, NAME, "VXIHXOTH JHOP" };
+	Searcher* searcher = searcherManager->getSearcher(&cmdString);
+	prioirtyQ iter = searcher->search(&cmdString);
 	EXPECT_EQ("15123099", iter.top()->employeeNum);
 }
 TEST_F(SearcherTest, nameOptionLSearchTest) {
-	const CmdString cmdString = { "", "-l", "name","NTAWR", "","","","" };
-	Searcher* searcher = searcherManager->getSearcher(cmdString);
-	prioirtyQ iter = searcher->search(cmdString);
+	const SchCmd cmdString = { BLANK, LAST_NAME, NAME,"NTAWR" };
+	Searcher* searcher = searcherManager->getSearcher(&cmdString);
+	prioirtyQ iter = searcher->search(&cmdString);
 	string result;
 	if (!iter.empty())
 		result = iter.top()->employeeNum;
 	EXPECT_EQ("60112609", result);
 }
 TEST_F(SearcherTest, nameOptionFSearchTest) {
-	const CmdString cmdString = { "", "-f", "name","FB", "","","","" };
-	Searcher* searcher = searcherManager->getSearcher(cmdString);
-	prioirtyQ iter = searcher->search(cmdString);
+	const SchCmd cmdString = { BLANK, FIRST_NAME, NAME,"FB" };
+	Searcher* searcher = searcherManager->getSearcher(&cmdString);
+	prioirtyQ iter = searcher->search(&cmdString);
 	string result;
 	if (!iter.empty())
 		result = iter.top()->employeeNum;
@@ -52,43 +52,43 @@ TEST_F(SearcherTest, nameOptionFSearchTest) {
 }
 
 TEST_F(SearcherTest, phoneNumOptionLSearchTest) {
-	const CmdString cmdString = { "", "-m", "phoneNum","5645", "","","","" };
-	Searcher* searcher = searcherManager->getSearcher(cmdString);
-	prioirtyQ iter = searcher->search(cmdString);	string result;
+	const SchCmd cmdString = { BLANK, MIDDLE_NUM, PHONENUM, "5645" };
+	Searcher* searcher = searcherManager->getSearcher(&cmdString);
+	prioirtyQ iter = searcher->search(&cmdString);	string result;
 	if (!iter.empty())
 		result = iter.top()->employeeNum;
 	EXPECT_EQ("60112609", result);
 }
 TEST_F(SearcherTest, phoneNumOptionFSearchTest) {
-	const CmdString cmdString = { "", "-l", "phoneNum","6122", "","","","" };
-	Searcher* searcher = searcherManager->getSearcher(cmdString);
-	prioirtyQ iter = searcher->search(cmdString);	string result;
+	const SchCmd cmdString = { BLANK, LAST_NUM, PHONENUM,"6122" };
+	Searcher* searcher = searcherManager->getSearcher(&cmdString);
+	prioirtyQ iter = searcher->search(&cmdString);	string result;
 	if (!iter.empty())
 		result = iter.top()->employeeNum;
 	EXPECT_EQ("60112609", result);
 }
 
 TEST_F(SearcherTest, birthdayOptionYSearchTest) {
-	const CmdString cmdString = { "", "-y", "birthday","1977", "","","","" };
-	Searcher* searcher = searcherManager->getSearcher(cmdString);
-	prioirtyQ iter = searcher->search(cmdString);	string result;
+	const SchCmd  cmdString = { BLANK, YEAR, BIRTHDAY,"1977" };
+	Searcher* searcher = searcherManager->getSearcher(&cmdString);
+	prioirtyQ iter = searcher->search(&cmdString);	string result;
 	if (!iter.empty())
 		result = iter.top()->employeeNum;
 	EXPECT_EQ("60112609", result);
 }
 TEST_F(SearcherTest, birthdayOptionMSearchTest) {
-	const CmdString cmdString = { "", "-m", "birthday","12", "","","","" };
-	Searcher* searcher = searcherManager->getSearcher(cmdString);
-	prioirtyQ iter = searcher->search(cmdString);	string result;
+	const SchCmd cmdString = { BLANK, MONTH, BIRTHDAY, "12" };
+	Searcher* searcher = searcherManager->getSearcher(&cmdString);
+	prioirtyQ iter = searcher->search(&cmdString);	string result;
 	if (!iter.empty())
 		result = iter.top()->employeeNum;
 	EXPECT_EQ("60112609", result);
 }
 
 TEST_F(SearcherTest, birthdayOptionDSearchTest) {
-	const CmdString cmdString = { "", "-d", "birthday","11", "","","","" };
-	Searcher* searcher = searcherManager->getSearcher(cmdString);
-	prioirtyQ iter = searcher->search(cmdString);	string result;
+	const SchCmd cmdString = { BLANK, DAY, BIRTHDAY,"11" };
+	Searcher* searcher = searcherManager->getSearcher(&cmdString);
+	prioirtyQ iter = searcher->search(&cmdString);	string result;
 	if (!iter.empty())
 		result = iter.top()->employeeNum;
 	EXPECT_EQ("60112609", result);

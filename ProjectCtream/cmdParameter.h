@@ -8,23 +8,19 @@ using namespace std;
 
 class CmdParameter {
 public:
-    CmdParameter() {
-        parseCmdParameter_[ADD] = new ParseAddCmdParameter();
-        parseCmdParameter_[DEL] = new ParseDelCmdParameter();
-        parseCmdParameter_[SCH] = new ParseSchCmdParameter();
-        parseCmdParameter_[MOD] = new ParseModCmdParameter();
+    ~CmdParameter() {
+        if (pParseCmdParameter) delete pParseCmdParameter;
     }
     int parse(string cmd);
-    CmdString getCmdString() const;
+    void* getCmdString() const;
     int getCmdType() const;
 
 private:
     vector<string> splitString(string input, char delimiter);
 
 private:
-    int cmdType_;
-    int cmdParameterSize_[MAX_CMDTYPE] = { 10, 6, 6, 8 };
-    ParseCmdParameter *parseCmdParameter_[MAX_CMDTYPE];
-    CmdString cmdString_;
-    vector<string> cmdList_;
+    int cmdType;
+    int cmdParameterSize[MAX_CMDTYPE] = { 10, 6, 6, 8 };
+    ParseCmdParameter* pParseCmdParameter;
+    vector<string> cmdList;
 };

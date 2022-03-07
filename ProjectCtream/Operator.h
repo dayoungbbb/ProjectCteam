@@ -4,7 +4,7 @@
 class Operator {
 public:
     Operator(list<Employee>* dataBase_) { dataBase = dataBase_; }
-    virtual void operate(prioirtyQ& searchQ, CmdString& cmdString) = 0;
+    virtual void operate(prioirtyQ& searchQ, void* cmdString) = 0;
 
 protected:
     list<Employee>* dataBase;
@@ -15,7 +15,7 @@ public:
     AddOperator(list<Employee>* dataBase) : Operator(dataBase) {}
 
 private:
-    virtual void operate(prioirtyQ& searchQ, CmdString& cmdString) override;
+    virtual void operate(prioirtyQ& searchQ, void* cmdString) override;
 };
 
 class ModOperator : public Operator {
@@ -23,7 +23,7 @@ public:
     ModOperator(list<Employee>* dataBase) : Operator(dataBase) {}
 
 private:
-    virtual void operate(prioirtyQ& searchQ, CmdString& cmdString) override;
+    virtual void operate(prioirtyQ& searchQ, void* cmdString) override;
 };
 
 class DelOperator : public Operator {
@@ -31,7 +31,7 @@ public:
     DelOperator(list<Employee>* dataBase) : Operator(dataBase) {}
 
 private:
-    virtual void operate(prioirtyQ& searchQ, CmdString& cmdString) override;
+    virtual void operate(prioirtyQ& searchQ, void* cmdString) override;
 };
 
 class OperatorManager {

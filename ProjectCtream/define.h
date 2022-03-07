@@ -6,17 +6,6 @@ using namespace std;
 #define BirthdaySize 8
 #define INVALID -1
 
-struct CmdString {
-    string op1;
-    string op2;
-    string col1;
-    string col2;
-    string col3;
-    string col4;
-    string col5;
-    string col6;
-};
-
 enum CmdType {
     ADD = 0,
     DEL,
@@ -33,6 +22,19 @@ enum EColumn {
     BIRTHDAY,
     CERTI,
     MAX_COLUMNTYPE = 6
+};
+
+enum OptionType {
+    BLANK,
+    PRINT,
+    FIRST_NAME,
+    LAST_NAME,
+    MIDDLE_NUM,
+    LAST_NUM,
+    YEAR,
+    MONTH,
+    DAY,
+    MAX_OPTION_TYPE
 };
 
 static const string CmdTypeStr[] = {
@@ -57,4 +59,17 @@ struct Bday {
     string year;
     string month;
     string day;
+};
+
+struct SchCmd {
+    int firstOptionType;
+    int secondOptionType;
+    int condType;
+    string cond;
+};
+
+struct ModCmd {
+    SchCmd schCmd;
+    int condType;
+    string cond;
 };

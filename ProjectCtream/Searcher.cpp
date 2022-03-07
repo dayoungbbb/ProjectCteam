@@ -1,10 +1,10 @@
 #include "Searcher.h"
-prioirtyQ EmployeeNumSearcher::search(const CmdString& cmdString) const
+prioirtyQ EmployeeNumSearcher::search(const void* cmdString) const
 {
     prioirtyQ searchResult;
-
+    SchCmd* schCmd = (SchCmd*)cmdString;
     for (employeeIter iter = pDataBase_->begin(); iter != pDataBase_->end(); iter++) {
-        if ((*iter).employeeNum == cmdString.col2) {
+        if ((*iter).employeeNum == schCmd->cond) {
             searchResult.emplace(iter);
         }
     }
@@ -12,12 +12,12 @@ prioirtyQ EmployeeNumSearcher::search(const CmdString& cmdString) const
     return searchResult;
 }
 
-prioirtyQ NameNumSearcher::search(const CmdString& cmdString) const
+prioirtyQ NameNumSearcher::search(const void* cmdString) const
 {
     prioirtyQ searchResult;
-
+    SchCmd* schCmd = (SchCmd*)cmdString;
     for (employeeIter iter = pDataBase_->begin(); iter != pDataBase_->end(); iter++) {
-        if (cmdString.col2 == getInfo((*iter).name, cmdString.op2)) {
+        if (schCmd->cond == getInfo((*iter).name, schCmd->secondOptionType)) {
             searchResult.emplace(iter);
         }
     }
@@ -25,24 +25,24 @@ prioirtyQ NameNumSearcher::search(const CmdString& cmdString) const
     return searchResult;
 }
 
-string NameNumSearcher::getInfo(const Name name, const string option) const
+string NameNumSearcher::getInfo(const Name name, const int option) const
 {
-    if (option == "-f") {
+    if (option == FIRST_NAME) {
         return name.firstName;
     }
-    else if (option == "-l")
+    else if (option == LAST_NAME)
     {
         return name.lastName;
     }
     return name.firstName + " " + name.lastName;
 }
 
-prioirtyQ ClSearcher::search(const CmdString& cmdString) const
+prioirtyQ ClSearcher::search(const void* cmdString) const
 {
     prioirtyQ searchResult;
-
+    SchCmd* schCmd = (SchCmd*)cmdString;
     for (employeeIter iter = pDataBase_->begin(); iter != pDataBase_->end(); iter++) {
-        if ((*iter).cl == cmdString.col2) {
+        if ((*iter).cl == schCmd->cond) {
             searchResult.emplace(iter);
         }
     }
@@ -50,12 +50,12 @@ prioirtyQ ClSearcher::search(const CmdString& cmdString) const
     return searchResult;
 }
 
-prioirtyQ PhoneNumSearcher::search(const CmdString& cmdString) const
+prioirtyQ PhoneNumSearcher::search(const void* cmdString) const
 {
     prioirtyQ searchResult;
-
+    SchCmd* schCmd = (SchCmd*)cmdString;
     for (employeeIter iter = pDataBase_->begin(); iter != pDataBase_->end(); iter++) {
-        if (cmdString.col2 == getInfo((*iter).phoneNum, cmdString.op2)) {
+        if (schCmd->cond == getInfo((*iter).phoneNum, schCmd->secondOptionType)) {
             searchResult.emplace(iter);
         }
     }
@@ -63,24 +63,24 @@ prioirtyQ PhoneNumSearcher::search(const CmdString& cmdString) const
     return searchResult;
 }
 
-string PhoneNumSearcher::getInfo(const PhoneNum phoneNum, const string option) const
+string PhoneNumSearcher::getInfo(const PhoneNum phoneNum, const int option) const
 {
-    if (option == "-m") {
+    if (option == MIDDLE_NUM) {
         return phoneNum.middle;
     }
-    else if (option == "-l")
+    else if (option == LAST_NUM)
     {
         return phoneNum.last;
     }
     return "010-" + phoneNum.middle + "-" + phoneNum.last;
 }
 
-prioirtyQ BirthdaySearcher::search(const CmdString& cmdString) const
+prioirtyQ BirthdaySearcher::search(const void* cmdString) const
 {
     prioirtyQ searchResult;
-
+    SchCmd* schCmd = (SchCmd*)cmdString;
     for (employeeIter iter = pDataBase_->begin(); iter != pDataBase_->end(); iter++) {
-        if (cmdString.col2 == getInfo((*iter).bday, cmdString.op2)) {
+        if (schCmd->cond == getInfo((*iter).bday, schCmd->secondOptionType)) {
             searchResult.emplace(iter);
         }
     }
@@ -88,52 +88,52 @@ prioirtyQ BirthdaySearcher::search(const CmdString& cmdString) const
     return searchResult;
 }
 
-string BirthdaySearcher::getInfo(const Bday bday, const string option) const
+string BirthdaySearcher::getInfo(const Bday bday, const int option) const
 {
-    if (option == "-y") {
+    if (option == YEAR) {
         return bday.year;
     }
-    else if (option == "-m")
+    else if (option == MONTH)
     {
         return bday.month;
     }
-    else if (option == "-d") {
+    else if (option == DAY) {
         return bday.day;
     }
     return bday.year + bday.month + bday.day;
 }
 
-prioirtyQ CertiSearcher::search(const CmdString& cmdString) const
+prioirtyQ CertiSearcher::search(const void* cmdString) const
 {
     prioirtyQ searchResult;
-
+    SchCmd* schCmd = (SchCmd*)cmdString;
     for (employeeIter iter = pDataBase_->begin(); iter != pDataBase_->end(); iter++) {
-        if ((*iter).certi == cmdString.col2) {
+        if ((*iter).certi == schCmd->cond) {
             searchResult.emplace(iter);
         }
     }
 
     return searchResult;
 }
-Searcher* SearcherManager::getSearcher(const CmdString& cmdString) const
+Searcher* SearcherManager::getSearcher(const void* cmdString) const
 {
-
-    if (cmdString.col1 == "employeeNum") {
+    SchCmd* schCmd = (SchCmd*)cmdString;
+    if (schCmd->condType == EMPLOYEENUM) {
         return searcher_[EMPLOYEENUM];
     }
-    else if (cmdString.col1 == "name") {
+    else if (schCmd->condType == NAME) {
         return searcher_[NAME];
     }
-    else if (cmdString.col1 == "cl") {
+    else if (schCmd->condType == CL) {
         return searcher_[CL];
     }
-    else if (cmdString.col1 == "phoneNum") {
+    else if (schCmd->condType == PHONENUM) {
         return searcher_[PHONENUM];
     }
-    else if (cmdString.col1 == "birthday") {
+    else if (schCmd->condType == BIRTHDAY) {
         return searcher_[BIRTHDAY];
     }
-    else if (cmdString.col1 == "certi") {
+    else if (schCmd->condType == CERTI) {
         return searcher_[CERTI];
     }
     return nullptr;

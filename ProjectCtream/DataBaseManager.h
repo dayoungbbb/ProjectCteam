@@ -6,8 +6,8 @@ public:
 	~DataBaseManager();
 	void operate(std::string inputFileName, std::string outputFileName);
 private:
-	void operateSearcher(int cmdType, const CmdString cmdString, prioirtyQ& searchQ);
-	void operateOperator(int cmdType, CmdString cmdString, prioirtyQ& searchQ);
+	void operateSearcher(int cmdType, const void* cmdString, prioirtyQ& searchQ);
+	void operateOperator(int cmdType, void* cmdString, prioirtyQ& searchQ);
 
 	CmdParameter cmdParameter;
 	
