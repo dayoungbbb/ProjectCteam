@@ -31,6 +31,7 @@ protected:
         unsigned long long checkSum = 0;
         char c;
         while (outputFile.get(c)) {
+            if (c == '\n') continue;
             checkSum += static_cast<unsigned long long>(c);
         }
         outputFile.close();
