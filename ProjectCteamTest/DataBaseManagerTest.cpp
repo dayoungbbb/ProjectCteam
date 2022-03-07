@@ -1,8 +1,7 @@
 #include "pch.h"
 #include "../ProjectCtream/DataBaseManager.cpp"
-#include <vector>
+#include "TestUtil.h"
 
-#if 0
 class DataBaseManagerTest : public ::testing::Test
 {
 public:
@@ -22,24 +21,6 @@ protected:
     {
     }
 
-    unsigned long long getOutputFileCheckSum(std::string fileName) {
-        ifstream outputFile;
-        outputFile.open(fileName);
-        if (outputFile.fail()) {
-            throw invalid_argument("file open failed");
-        }
-
-        unsigned long long checkSum = 0;
-        char c;
-        while (outputFile.get(c)) {
-            if (c == '\n') continue;
-            checkSum += static_cast<unsigned long long>(c);
-        }
-        outputFile.close();
-
-        return checkSum;
-    }
-
 protected:
     // variables
     DataBaseManager* dataBaseManager;
@@ -50,4 +31,3 @@ TEST_F(DataBaseManagerTest, operateTest) {
 
     EXPECT_EQ(getOutputFileCheckSum("output_DataBaseManagerTest.txt"), getOutputFileCheckSum("golden_DataBaseManagerTest.txt"));
 }
-#endif
