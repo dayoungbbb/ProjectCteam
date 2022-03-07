@@ -28,7 +28,7 @@ public:
     ~NameNumSearcher() {}
 private:
     virtual prioirtyQ search(const CmdString& cmdString) const override;
-    string getInfo(const struct Name name, const string option) const;
+    string getInfo(const Name name, const string option) const;
 };
 
 class ClSearcher : public Searcher {
