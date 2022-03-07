@@ -38,15 +38,13 @@ public:
         searcher_[OTHERCOLUMN] = new ColumnSearcher(pDataBase, columeMap);
     }
     ~SearcherManager() {
-        for (auto& op : searcher_) {
-            delete op;
-            op = nullptr;
-        }
+        delete searcher_[EMPLOYEENUM];
+        delete searcher_[OTHERCOLUMN];
     }
 
     Searcher* getSearcher(const void* cmdString) const ;
 
 private:
-    Searcher* searcher_[MAX_MAINCOLUMNTYPE];
+    Searcher* searcher_[2];
 
 };

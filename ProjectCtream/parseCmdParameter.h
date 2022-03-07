@@ -76,7 +76,7 @@ protected:
     }
 
     int getColumn(const string& condType) {
-        if (condType == "Employee") return EMPLOYEENUM;
+        if (condType == "employeeNum") return EMPLOYEENUM;
         if (condType == "name") return NAME;
         if (condType == "cl") return CL;
         if (condType == "phoneNum") return PHONENUM;
@@ -100,10 +100,10 @@ protected:
     bool isCondVal(int condition, vector<string>& strList, const string& str) {
 
         if (condition == EMPLOYEENUM && isNumber(str) && str.length() == 8) return true;
-        if (condition == NAME && isName(strList, str)) return true;
+        if ((condition == NAME || condition == NAME_LAST || condition == NAME_FIRST) && isName(strList, str)) return true;
         if (condition == CL && isCl(str)) return true;
-        if (condition == PHONENUM && isPhoneNum(strList, str)) return true;
-        if (condition == BIRTHDAY && isBirthday(strList, str)) return true;
+        if ((condition == PHONENUM || condition == PHONENUM_BACK || condition == PHONENUM_MIDDLE) && isPhoneNum(strList, str)) return true;
+        if ((condition == BIRTHDAY || condition == BIRTHDAY_YEAR || condition == BIRTHDAY_MONTH || condition == BIRTHDAY_DATE) && isBirthday(strList, str)) return true;
         if (condition == CERTI && isCerti(str)) return true;
         return false;
     }
