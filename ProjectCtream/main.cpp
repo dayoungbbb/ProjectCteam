@@ -12,10 +12,16 @@
 static constexpr int INPUT_PARAM_NUM = 2;
 
 static bool isValidFileName(const std::string &fileName) {
-    if (fileName.substr(fileName.size() - 4, 4) == ".txt") {
-        return true;
+    if (fileName.substr(fileName.size() - 4, 4) != ".txt") {
+        return false;
     }
-    return false;
+
+    if (fileName[0] == '/' || fileName.find("../") != -1) {
+        std::cout << "Upper directory not allowed" << std::endl;
+        return false;
+    }
+
+    return true;
 }
 
 int main(int argc, char **argv)
