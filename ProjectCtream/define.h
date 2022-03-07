@@ -22,7 +22,17 @@ enum CmdType {
     DEL,
     SCH,
     MOD,
-    MAX_CMDTYPE
+    MAX_CMDTYPE = 4
+};
+
+enum EColumn {
+    EMPLOYEENUM = 0,
+    NAME,
+    CL,
+    PHONENUM,
+    BIRTHDAY,
+    CERTI,
+    MAX_COLUMNTYPE = 6
 };
 
 static const string CmdTypeStr[] = {
