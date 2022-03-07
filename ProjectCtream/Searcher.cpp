@@ -1,24 +1,41 @@
 #include "Searcher.h"
-prioirtyQ EmployeeNumSearcher::search(const CmdString& cmdString) const
+vector<string> EmployeeNumSearcher::search(const CmdString& cmdString) const
 {
-    prioirtyQ searchResult;
+    vector<string> searchResult;
 
-    for (employeeIter iter = pDataBase_->begin(); iter != pDataBase_->end(); iter++) {
-        if ((*iter).employeeNum == cmdString.col2) {
-            searchResult.emplace(iter);
-        }
+    string key = cmdString.col2;
+    if ((*pDataBase_).count(key)) {
+        searchResult.emplace_back(key);
     }
 
     return searchResult;
 }
 
-prioirtyQ NameNumSearcher::search(const CmdString& cmdString) const
+vector<string> NameNumSearcher::search(const CmdString& cmdString) const
 {
-    prioirtyQ searchResult;
+    vector<string> searchResult;
+    string key = cmdString.col2;
 
-    for (employeeIter iter = pDataBase_->begin(); iter != pDataBase_->end(); iter++) {
-        if (cmdString.col2 == getInfo((*iter).name, cmdString.op2)) {
-            searchResult.emplace(iter);
+    if (cmdString.op2 == "-f") {
+        if ((*columeMap_)[NAME_FIRST].count(key)) {
+            for (auto it = (*columeMap_)[NAME_FIRST].lower_bound(key); it != (*columeMap_)[NAME_FIRST].upper_bound(key); it++) {
+                searchResult.emplace_back(it->second);
+            }
+        }
+    }
+    else if (cmdString.op2 == "-l")
+    {
+        if ((*columeMap_)[NAME_LAST].count(key)) {
+            for (auto it = (*columeMap_)[NAME_LAST].lower_bound(key); it != (*columeMap_)[NAME_LAST].upper_bound(key); it++) {
+                searchResult.emplace_back(it->second);
+            }
+        }
+    }
+    else {
+        if ((*columeMap_)[NAME].count(key)) {
+            for (auto it = (*columeMap_)[NAME].lower_bound(key); it != (*columeMap_)[NAME].upper_bound(key); it++) {
+                searchResult.emplace_back(it->second);
+            }
         }
     }
 
@@ -37,29 +54,47 @@ string NameNumSearcher::getInfo(const Name name, const string option) const
     return name.firstName + " " + name.lastName;
 }
 
-prioirtyQ ClSearcher::search(const CmdString& cmdString) const
+vector<string> ClSearcher::search(const CmdString& cmdString) const
 {
-    prioirtyQ searchResult;
-
-    for (employeeIter iter = pDataBase_->begin(); iter != pDataBase_->end(); iter++) {
-        if ((*iter).cl == cmdString.col2) {
-            searchResult.emplace(iter);
+    vector<string> searchResult;
+    string key = cmdString.col2;
+    if ((*columeMap_)[CL].count(key)) {
+        for (auto it = (*columeMap_)[CL].lower_bound(key); it != (*columeMap_)[CL].upper_bound(key); it++) {
+            searchResult.emplace_back(it->second);
         }
     }
 
     return searchResult;
 }
 
-prioirtyQ PhoneNumSearcher::search(const CmdString& cmdString) const
+vector<string> PhoneNumSearcher::search(const CmdString& cmdString) const
 {
-    prioirtyQ searchResult;
+    vector<string> searchResult;
 
-    for (employeeIter iter = pDataBase_->begin(); iter != pDataBase_->end(); iter++) {
-        if (cmdString.col2 == getInfo((*iter).phoneNum, cmdString.op2)) {
-            searchResult.emplace(iter);
+    string key = cmdString.col2;
+
+    if (cmdString.op2 == "-m") {
+        if ((*columeMap_)[PHONENUM_MIDDLE].count(key)) {
+            for (auto it = (*columeMap_)[PHONENUM_MIDDLE].lower_bound(key); it != (*columeMap_)[PHONENUM_MIDDLE].upper_bound(key); it++) {
+                searchResult.emplace_back(it->second);
+            }
         }
     }
-
+    else if (cmdString.op2 == "-l")
+    {
+        if ((*columeMap_)[PHONENUM_BACK].count(key)) {
+            for (auto it = (*columeMap_)[PHONENUM_BACK].lower_bound(key); it != (*columeMap_)[PHONENUM_BACK].upper_bound(key); it++) {
+                searchResult.emplace_back(it->second);
+            }
+        }
+    }
+    else {
+        if ((*columeMap_)[PHONENUM].count(key)) {
+            for (auto it = (*columeMap_)[PHONENUM].lower_bound(key); it != (*columeMap_)[PHONENUM].upper_bound(key); it++) {
+                searchResult.emplace_back(it->second);
+            }
+        }
+    }
     return searchResult;
 }
 
@@ -75,13 +110,40 @@ string PhoneNumSearcher::getInfo(const PhoneNum phoneNum, const string option) c
     return "010-" + phoneNum.middle + "-" + phoneNum.last;
 }
 
-prioirtyQ BirthdaySearcher::search(const CmdString& cmdString) const
+vector<string> BirthdaySearcher::search(const CmdString& cmdString) const
 {
-    prioirtyQ searchResult;
+    vector<string> searchResult;
 
-    for (employeeIter iter = pDataBase_->begin(); iter != pDataBase_->end(); iter++) {
-        if (cmdString.col2 == getInfo((*iter).bday, cmdString.op2)) {
-            searchResult.emplace(iter);
+    string key = cmdString.col2;
+
+    if (cmdString.op2 == "-y") {
+        if ((*columeMap_)[BIRTHDAY_YEAR].count(key)) {
+            for (auto it = (*columeMap_)[BIRTHDAY_YEAR].lower_bound(key); it != (*columeMap_)[BIRTHDAY_YEAR].upper_bound(key); it++) {
+                searchResult.emplace_back(it->second);
+            }
+        }
+    }
+    else if (cmdString.op2 == "-m")
+    {
+        if ((*columeMap_)[BIRTHDAY_MONTH].count(key)) {
+            for (auto it = (*columeMap_)[BIRTHDAY_MONTH].lower_bound(key); it != (*columeMap_)[BIRTHDAY_MONTH].upper_bound(key); it++) {
+                searchResult.emplace_back(it->second);
+            }
+        }
+    }
+    else if (cmdString.op2 == "-d")
+    {
+        if ((*columeMap_)[BIRTHDAY_DATE].count(key)) {
+            for (auto it = (*columeMap_)[BIRTHDAY_DATE].lower_bound(key); it != (*columeMap_)[BIRTHDAY_DATE].upper_bound(key); it++) {
+                searchResult.emplace_back(it->second);
+            }
+        }
+    }
+    else {
+        if ((*columeMap_)[BIRTHDAY].count(key)) {
+            for (auto it = (*columeMap_)[BIRTHDAY].lower_bound(key); it != (*columeMap_)[BIRTHDAY].upper_bound(key); it++) {
+                searchResult.emplace_back(it->second);
+            }
         }
     }
 
@@ -103,15 +165,17 @@ string BirthdaySearcher::getInfo(const Bday bday, const string option) const
     return bday.year + bday.month + bday.day;
 }
 
-prioirtyQ CertiSearcher::search(const CmdString& cmdString) const
+vector<string> CertiSearcher::search(const CmdString& cmdString) const
 {
-    prioirtyQ searchResult;
+    vector<string> searchResult;
 
-    for (employeeIter iter = pDataBase_->begin(); iter != pDataBase_->end(); iter++) {
-        if ((*iter).certi == cmdString.col2) {
-            searchResult.emplace(iter);
+    string key = cmdString.col2;
+    if ((*columeMap_)[CERTI].count(key)) {
+        for (auto it = (*columeMap_)[CERTI].lower_bound(key); it != (*columeMap_)[CERTI].upper_bound(key); it++) {
+            searchResult.emplace_back(it->second);
         }
     }
+
 
     return searchResult;
 }
