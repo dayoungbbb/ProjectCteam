@@ -11,11 +11,8 @@
 #include "DataBaseManager.h"
 
 DataBaseManager::DataBaseManager() {
-	operatorManager = nullptr;
 	operatorManager = new OperatorManager(&dataBase);
-	searcherManager = nullptr;
 	searcherManager = new SearcherManager(&dataBase);
-
 }
 
 DataBaseManager::~DataBaseManager() {
