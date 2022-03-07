@@ -11,8 +11,10 @@
 #include "DataBaseManager.h"
 
 DataBaseManager::DataBaseManager() {
-	operatorManager = new OperatorManager(&dataBase);
-	searcherManager = new SearcherManager(&dataBase);
+	columnMap.reserve(MAX_COLUMNTYPE);
+
+	operatorManager = new OperatorManager(&dataBase, &columnMap);
+	searcherManager = new SearcherManager(&dataBase, &columnMap);
 }
 
 DataBaseManager::~DataBaseManager() {
@@ -43,7 +45,9 @@ void DataBaseManager::operateOperator(int cmdType, CmdString cmdString, prioirty
 		throw invalid_argument("dataBaseSearcher is NULL");
 	}
 
-	dataBaseOperator->operate(searchQ, cmdString);
+	vector<string> temp;
+
+	dataBaseOperator->operate(temp, cmdString);
 }
 
 

@@ -2,6 +2,7 @@
 #include "../ProjectCtream/Printer.cpp"
 #include <vector>
 
+#if 0
 class PrinterTest : public ::testing::Test
 {
 public:
@@ -51,7 +52,6 @@ protected:
     std::vector<Employee> dataBase;
 };
 
-#if 0
 TEST_F(PrinterTest, printTest) {
     priorityQ.push(dataBase.begin());
     priorityQ.push(dataBase.begin() + 1);

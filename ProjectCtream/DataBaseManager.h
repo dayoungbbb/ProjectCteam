@@ -18,5 +18,8 @@ private:
 
 	Printer printer;
 
-	std::list<Employee> dataBase;
+	std::list<Employee> dataBasee; //삭제 필요. 빌드에러때문에 남겨둠
+
+	map<string, Employee> dataBase;
+	vector<multimap<string, string>> columnMap;
 };

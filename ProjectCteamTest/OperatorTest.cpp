@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "../ProjectCtream/Operator.cpp"
 
+#if 0
 class OperatorTest : public ::testing::Test
 {
 public:
@@ -26,7 +27,7 @@ protected:
 	prioirtyQ searchQ;
 	OperatorManager* operatorManager;
 };
-#if 0
+
 TEST_F(OperatorTest, ModTest) {
 	Operator* modOperator = operatorManager->getOperator(MOD);
 
