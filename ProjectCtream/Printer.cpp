@@ -1,12 +1,10 @@
 #include <vector>
 #include <string>
 #include <fstream>
-
+#include <algorithm>
 #include "define.h"
 #include "Employee.h"
 #include "Printer.h"
-
-#include <iostream>
 
 static constexpr int MAX_PRINT_CNT = 5;
 
@@ -39,21 +37,26 @@ void Printer::print(int cmdType, std::string op1, vector<string> searchList, boo
 
 	int writeCount = 0;
 	if (op1 == "-p") {
-		while (!searchList.empty() && writeCount < MAX_PRINT_CNT) {
-#if 0 // TODO: Modify
-			list<Employee>::iterator iter = searchQ.top();
-			searchQ.pop();
+		auto comp = [](string a, string b) {
+			cmp cmp;
+			string aStr = cmp.addStr(a);
+			string bStr = cmp.addStr(b);
 
+			return stoi(aStr) < stoi(bStr);
+		};
+		sort(searchList.begin(),searchList.end(), comp);
+
+		for (auto searchList : searchList) {
 			result += CmdTypeStr[cmdType] + ",";
-			result += (*iter).employeeNum + ",";
-			result += (*iter).name.firstName + " " + (*iter).name.lastName + ",";
-			result += (*iter).cl + ",";
-			result += "010-" + (*iter).phoneNum.middle + "-" + (*iter).phoneNum.last + ",";
-			result += (*iter).bday.year + (*iter).bday.month + (*iter).bday.day + ",";
-			result += (*iter).certi + "\n";
+			result += dataBase[searchList].employeeNum + ",";
+			result += dataBase[searchList].name.firstName + " " + dataBase[searchList].name.lastName + ",";
+			result += dataBase[searchList].cl + ",";
+			result += "010-" + dataBase[searchList].phoneNum.middle + "-" + dataBase[searchList].phoneNum.last + ",";
+			result += dataBase[searchList].bday.year + dataBase[searchList].bday.month + dataBase[searchList].bday.day + ",";
+			result += dataBase[searchList].certi + "\n";
 
 			writeCount++;
-#endif
+			if (writeCount == MAX_PRINT_CNT) break;
 		}
 	}
 
