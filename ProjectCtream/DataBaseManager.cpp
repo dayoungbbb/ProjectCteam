@@ -50,7 +50,7 @@ void DataBaseManager::operateOperator(int cmdType, CmdString cmdString, prioirty
 }
 
 
-void DataBaseManager::operate(std::string inputFileName) {
+void DataBaseManager::operate(std::string inputFileName, std::string outputFileName) {
 
 	ifstream inputFile;
 	inputFile.open(inputFileName);
@@ -76,6 +76,7 @@ void DataBaseManager::operate(std::string inputFileName) {
 		prioirtyQ searchQ;
 		operateSearcher(cmdType, cmdString, searchQ);
 
+		printer.setOutputFileName(outputFileName);
 		printer.print(cmdType, cmdString.op1, searchQ, isFirst);
 
 		operateOperator(cmdType, cmdString, searchQ);

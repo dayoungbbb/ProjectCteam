@@ -10,6 +10,14 @@
 
 static constexpr int MAX_PRINT_CNT = 5;
 
+Printer::Printer() {
+	outputFileName = "";
+}
+
+void Printer::setOutputFileName(const std::string &outputFileName) {
+	this->outputFileName = outputFileName;
+}
+
 void Printer::print(int cmdType, std::string op1, prioirtyQ searchQ, bool &isFirst) {
 	if (cmdType == ADD) {
 		return;
@@ -20,7 +28,11 @@ void Printer::print(int cmdType, std::string op1, prioirtyQ searchQ, bool &isFir
 	std::ios_base::open_mode openMode = isFirst ?
 		std::ios::out : (std::ios::out | std::ios::app);
 
-	outputFile.open("output.txt", openMode);
+	if (outputFileName.size() == 0) {
+		outputFileName = "output.txt";
+	}
+
+	outputFile.open(outputFileName, openMode);
 	if (!outputFile.is_open()) {
 		throw invalid_argument("output.txt file open failed");
 	}

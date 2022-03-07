@@ -45,7 +45,7 @@ protected:
 };
 
 TEST_F(DataBaseManagerTest, operateTest) {
-    dataBaseManager->operate("test_input.txt");
+    dataBaseManager->operate("test_input.txt", "output_DataBaseManagerTest.txt");
 
-    EXPECT_EQ(getOutputFileCheckSum("output.txt"), getOutputFileCheckSum("golden_DataBaseManagerTest.txt"));
+    EXPECT_EQ(getOutputFileCheckSum("output_DataBaseManagerTest.txt"), getOutputFileCheckSum("golden_DataBaseManagerTest.txt"));
 }
