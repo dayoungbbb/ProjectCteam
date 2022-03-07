@@ -1,16 +1,10 @@
 #include "Operator.h"
 
-void AddOperator::operate(vector<string>& searchQ, CmdString& cmdString)
+void AddOperator::operate(vector<string>& searchQ, void* cmdString)
 {
-    Employee employee;
-    employee.employeeNum = cmdString.col1;
-    parseName(cmdString.col2, employee.name.firstName, employee.name.lastName);
-    employee.cl = cmdString.col3;
-    parsePhoneNum(cmdString.col4, employee.phoneNum.middle, employee.phoneNum.last);
-    parseBirthday(cmdString.col5, employee.bday.year, employee.bday.month, employee.bday.day);
-    employee.certi = cmdString.col6;
+    Employee* employee = (Employee*)cmdString;
 
-    addColumnMap(employee);
+    addColumnMap(*employee);
 }
 
 void Operator::addColumnMap(Employee& employee)
@@ -59,30 +53,31 @@ void Operator::delColumnMap(EColumn eColumn, Employee& employee, string key)
     }
 }
 
-void ModOperator::operate(vector<string>& searchQ, CmdString& cmdString)
+void ModOperator::operate(vector<string>& searchQ, void* cmdString)
 {
+    ModCmd* modCmd = (ModCmd*)cmdString;
     for (auto employeeNum : searchQ) {
-        if (cmdString.col3 == "employeeNum") {
+        if (modCmd->condType == EMPLOYEENUM) {
             throw invalid_argument("사원번호는 바꿀 수 없습니다");
         }
 
         Employee employee = (*dataBase)[employeeNum];
         delColumnMap(employee);
 
-        if (cmdString.col3 == "name") {
-            parseName(cmdString.col4, employee.name.firstName, employee.name.lastName);
+        if (modCmd->condType == NAME) {
+            parseName(modCmd->cond, employee.name.firstName, employee.name.lastName);
         }
-        else if (cmdString.col3 == "cl") {
-            employee.cl = cmdString.col4;
+        else if (modCmd->condType == CL) {
+            employee.cl = modCmd->cond;
         }
-        else if (cmdString.col3 == "phoneNum") {
-            parsePhoneNum(cmdString.col4, employee.phoneNum.middle, employee.phoneNum.last);
+        else if (modCmd->condType == PHONENUM) {
+            parsePhoneNum(modCmd->cond, employee.phoneNum.middle, employee.phoneNum.last);
         }
-        else if (cmdString.col3 == "birthday") {
-            parseBirthday(cmdString.col4, employee.bday.year, employee.bday.month, employee.bday.day);
+        else if (modCmd->condType == BIRTHDAY) {
+            parseBirthday(modCmd->cond, employee.bday.year, employee.bday.month, employee.bday.day);
         }
-        else if (cmdString.col3 == "certi") {
-            employee.certi = cmdString.col4;
+        else if (modCmd->condType == CERTI) {
+            employee.certi = modCmd->cond;
         }
         else {
             throw invalid_argument("Column 이름 확인해주세요");
@@ -92,7 +87,7 @@ void ModOperator::operate(vector<string>& searchQ, CmdString& cmdString)
     }
 }
 
-void DelOperator::operate(vector<string>& searchQ, CmdString& cmdString)
+void DelOperator::operate(vector<string>& searchQ, void* cmdString)
 {
     for (auto employeeNum : searchQ) {
         Employee employee = (*dataBase)[employeeNum];

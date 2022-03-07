@@ -16,7 +16,7 @@ void Printer::setOutputFileName(const std::string &outputFileName) {
 	this->outputFileName = outputFileName;
 }
 
-void Printer::print(int cmdType, std::string op1, vector<string> searchList, bool &isFirst) {
+void Printer::print(int cmdType, void* cmdString, vector<string> searchList, bool &isFirst) {
 	if (cmdType == ADD) {
 		return;
 	}
@@ -34,9 +34,9 @@ void Printer::print(int cmdType, std::string op1, vector<string> searchList, boo
 	if (!outputFile.is_open()) {
 		throw invalid_argument("output.txt file open failed");
 	}
-
+	SchCmd* schCmd = (SchCmd*)cmdString;
 	int writeCount = 0;
-	if (op1 == "-p") {
+	if (schCmd->printOption == PRINT) {
 		auto comp = [](string a, string b) {
 			cmp cmp;
 			string aStr = cmp.addStr(a);

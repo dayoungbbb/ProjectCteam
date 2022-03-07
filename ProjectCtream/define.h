@@ -5,17 +5,9 @@ using namespace std;
 #define NameSize 2
 #define BirthdaySize 8
 #define INVALID -1
-
-struct CmdString {
-    string op1;
-    string op2;
-    string col1;
-    string col2;
-    string col3;
-    string col4;
-    string col5;
-    string col6;
-};
+#define PRINT 1
+#define BLANK 0
+#define OTHERCOLUMN 1
 
 enum CmdType {
     ADD = 0,
@@ -66,4 +58,16 @@ struct Bday {
     string year;
     string month;
     string day;
+};
+
+struct SchCmd {
+    int printOption;
+    int condType;
+    string cond;
+};
+
+struct ModCmd {
+    SchCmd schCmd;
+    int condType;
+    string cond;
 };
