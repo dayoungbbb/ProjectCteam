@@ -40,12 +40,12 @@ void Printer::print(int cmdType, std::string op1, prioirtyQ searchQ, bool &isFir
 	int writeCount = 0;
 	if (op1 == "-p") {
 		while (!searchQ.empty() && writeCount < MAX_PRINT_CNT) {
-			vector<Employee>::iterator iter = searchQ.top();
+			list<Employee>::iterator iter = searchQ.top();
 			searchQ.pop();
 
 			result += CmdTypeStr[cmdType] + ",";
 			result += (*iter).employeeNum + ",";
-			result += (*iter).lastName + " " + (*iter).firstName + ",";
+			result += (*iter).firstName + " " + (*iter).lastName + ",";
 			result += (*iter).cl + ",";
 			result += "010-" + (*iter).middleOfPhoneNum + "-" + (*iter).backOfPhoneNum + ",";
 			result += (*iter).yearOfBday + (*iter).monthOfBday + (*iter).dateOfBday + ",";
