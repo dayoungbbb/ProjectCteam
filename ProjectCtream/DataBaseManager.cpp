@@ -11,7 +11,7 @@
 #include "DataBaseManager.h"
 
 DataBaseManager::DataBaseManager() {
-	columnMap.reserve(MAX_COLUMNTYPE);
+	columnMap.resize(MAX_COLUMNTYPE);
 
 	operatorManager = new OperatorManager(&dataBase, &columnMap);
 	searcherManager = new SearcherManager(&dataBase, &columnMap);
