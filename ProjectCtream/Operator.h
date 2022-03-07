@@ -11,6 +11,13 @@ public:
     virtual void operate(vector<string>& searchQ, CmdString& cmdString) = 0;
 
 protected:
+    void addColumnMap(Employee& employee);
+    void delColumnMap(Employee& employee);
+
+private:
+    void delColumnMap(EColumn eColumn, Employee& employee, string key);
+
+protected:
     map<string, Employee>* dataBase;
     vector<multimap<string, string>>* columnMap;
 };
