@@ -29,7 +29,7 @@ DataBaseManager::DataBaseManager() {
 	columnMap.push_back(dateBdayMap);
 
 	operatorManager = new OperatorManager(&dataBase, &columnMap);
-	searcherManager = new SearcherManager(&dataBasee);
+	searcherManager = new SearcherManager(&dataBase, &columnMap);
 }
 
 DataBaseManager::~DataBaseManager() {
