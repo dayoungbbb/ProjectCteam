@@ -11,22 +11,7 @@
 #include "DataBaseManager.h"
 
 DataBaseManager::DataBaseManager() {
-	multimap<string, string> employNumMap, nameMap, clMap, phoneNumMap, bDayMap, certiMap, 
-		FirstNameMap, LastNameMap,  middlePhoneNumMap, backPhoneNumMap, yearBdayMap, monthBdayMap, dateBdayMap;
-
-	columnMap.push_back(employNumMap);
-	columnMap.push_back(nameMap);
-	columnMap.push_back(clMap);
-	columnMap.push_back(phoneNumMap);
-	columnMap.push_back(bDayMap);
-	columnMap.push_back(certiMap);
-	columnMap.push_back(FirstNameMap);
-	columnMap.push_back(LastNameMap);
-	columnMap.push_back(middlePhoneNumMap);
-	columnMap.push_back(backPhoneNumMap);
-	columnMap.push_back(yearBdayMap);
-	columnMap.push_back(monthBdayMap);
-	columnMap.push_back(dateBdayMap);
+	columnMap.reserve(MAX_COLUMNTYPE);
 
 	operatorManager = new OperatorManager(&dataBase, &columnMap);
 	searcherManager = new SearcherManager(&dataBase, &columnMap);
