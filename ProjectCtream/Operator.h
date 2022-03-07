@@ -5,8 +5,8 @@
 class Operator {
 public:
     Operator(map<string, Employee>* dataBase_, vector<multimap<string, string>>* columnMap_) {
-        dataBase = dataBase;
-        columnMap = columnMap;
+        dataBase = dataBase_;
+        columnMap = columnMap_;
     }
     virtual void operate(vector<string>& searchQ, CmdString& cmdString) = 0;
 

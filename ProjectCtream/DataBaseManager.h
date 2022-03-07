@@ -6,8 +6,8 @@ public:
 	~DataBaseManager();
 	void operate(std::string inputFileName, std::string outputFileName);
 private:
-	void operateSearcher(int cmdType, const CmdString cmdString, prioirtyQ& searchQ);
-	void operateOperator(int cmdType, CmdString cmdString, prioirtyQ& searchQ);
+	void operateSearcher(int cmdType, const CmdString cmdString, vector<string>& searchList);
+	void operateOperator(int cmdType, CmdString cmdString, vector<string>& searchList);
 
 	CmdParameter cmdParameter;
 	
@@ -16,9 +16,7 @@ private:
 	Searcher* dataBaseSearcher;
 	Operator* dataBaseOperator;
 
-	Printer printer;
-
-	std::list<Employee> dataBasee; //삭제 필요. 빌드에러때문에 남겨둠
+	Printer* printer;
 
 	map<string, Employee> dataBase;
 	vector<multimap<string, string>> columnMap;

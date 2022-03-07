@@ -2,9 +2,10 @@
 
 class Printer {
 public:
-	Printer();
+	Printer(map<string, Employee>& dataBase_);
 	void setOutputFileName(const std::string& outputFileName);
-	void print(int cmdType, std::string op1, prioirtyQ searchQ, bool &isFirst);
+	void print(int cmdType, std::string op1, vector<string> searchList, bool &isFirst);
 private:
 	std::string outputFileName;
+	map<string, Employee>& dataBase;
 };

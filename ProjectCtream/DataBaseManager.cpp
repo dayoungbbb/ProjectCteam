@@ -11,10 +11,11 @@
 #include "DataBaseManager.h"
 
 DataBaseManager::DataBaseManager() {
-	columnMap.reserve(MAX_COLUMNTYPE);
+	columnMap.resize(MAX_COLUMNTYPE);
 
 	operatorManager = new OperatorManager(&dataBase, &columnMap);
 	searcherManager = new SearcherManager(&dataBase, &columnMap);
+	printer = new Printer(dataBase);
 }
 
 DataBaseManager::~DataBaseManager() {
@@ -22,9 +23,11 @@ DataBaseManager::~DataBaseManager() {
 	operatorManager = nullptr;
 	delete searcherManager;
 	searcherManager = nullptr;
+	delete printer;
+	printer = nullptr;
 }
 
-void DataBaseManager::operateSearcher(int cmdType, const CmdString cmdString, prioirtyQ&searchQ) {
+void DataBaseManager::operateSearcher(int cmdType, const CmdString cmdString, vector<string> &searchList) {
 	if (cmdType == ADD)
 		return;
 
@@ -33,10 +36,10 @@ void DataBaseManager::operateSearcher(int cmdType, const CmdString cmdString, pr
 		throw invalid_argument("dataBaseSearcher is NULL");
 	}
 
-	searchQ = dataBaseSearcher->search(cmdString);
+	searchList = dataBaseSearcher->search(cmdString);
 }
 
-void DataBaseManager::operateOperator(int cmdType, CmdString cmdString, prioirtyQ& searchQ) {
+void DataBaseManager::operateOperator(int cmdType, CmdString cmdString, vector<string>& searchList) {
 	if (cmdType == SCH)
 		return;
 
@@ -45,9 +48,7 @@ void DataBaseManager::operateOperator(int cmdType, CmdString cmdString, prioirty
 		throw invalid_argument("dataBaseSearcher is NULL");
 	}
 
-	vector<string> temp;
-
-	dataBaseOperator->operate(temp, cmdString);
+	dataBaseOperator->operate(searchList, cmdString);
 }
 
 
@@ -74,13 +75,13 @@ void DataBaseManager::operate(std::string inputFileName, std::string outputFileN
 		int cmdType = cmdParameter.getCmdType();
 		CmdString cmdString = cmdParameter.getCmdString();
 		
-		prioirtyQ searchQ;
-		operateSearcher(cmdType, cmdString, searchQ);
+		vector<string> searchList;
+		operateSearcher(cmdType, cmdString, searchList);
 
-		printer.setOutputFileName(outputFileName);
-		printer.print(cmdType, cmdString.op1, searchQ, isFirst);
+		printer->setOutputFileName(outputFileName);
+		printer->print(cmdType, cmdString.op1, searchList, isFirst);
 
-		operateOperator(cmdType, cmdString, searchQ);
+		operateOperator(cmdType, cmdString, searchList);
 	}
 
 	inputFile.close();
