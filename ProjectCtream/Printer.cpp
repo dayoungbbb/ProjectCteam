@@ -10,7 +10,7 @@
 
 static constexpr int MAX_PRINT_CNT = 5;
 
-Printer::Printer() {
+Printer::Printer(map<string, Employee>& dataBase_) : dataBase(dataBase_) {
 	outputFileName = "";
 }
 
@@ -18,7 +18,7 @@ void Printer::setOutputFileName(const std::string &outputFileName) {
 	this->outputFileName = outputFileName;
 }
 
-void Printer::print(int cmdType, std::string op1, prioirtyQ searchQ, bool &isFirst) {
+void Printer::print(int cmdType, std::string op1, vector<string> searchList, bool &isFirst) {
 	if (cmdType == ADD) {
 		return;
 	}
@@ -39,7 +39,8 @@ void Printer::print(int cmdType, std::string op1, prioirtyQ searchQ, bool &isFir
 
 	int writeCount = 0;
 	if (op1 == "-p") {
-		while (!searchQ.empty() && writeCount < MAX_PRINT_CNT) {
+		while (!searchList.empty() && writeCount < MAX_PRINT_CNT) {
+#if 0 // TODO: Modify
 			list<Employee>::iterator iter = searchQ.top();
 			searchQ.pop();
 
@@ -52,12 +53,13 @@ void Printer::print(int cmdType, std::string op1, prioirtyQ searchQ, bool &isFir
 			result += (*iter).certi + "\n";
 
 			writeCount++;
+#endif
 		}
 	}
 
 	if (!writeCount) {
-		result = CmdTypeStr[cmdType] + "," + (searchQ.size() > 0 ?
-			to_string(searchQ.size()) : "NONE") + "\n";
+		result = CmdTypeStr[cmdType] + "," + (searchList.size() > 0 ?
+			to_string(searchList.size()) : "NONE") + "\n";
 	}
 
 	isFirst = false;
