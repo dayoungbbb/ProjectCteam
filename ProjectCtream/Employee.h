@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <list>
 #include <string>
 #include <sstream>
 #include <queue>
@@ -31,7 +32,7 @@ struct Employee {
     string certi;
 };
 
-static vector<Employee> dataBase;
+static list<Employee> dataBase;
 
 struct cmp {
     string addStr(string str) {
@@ -44,13 +45,13 @@ struct cmp {
             return ret;
     }
 
-    bool operator()(vector<Employee>::iterator a, vector<Employee>::iterator b) {
+    bool operator()(list<Employee>::iterator a, list<Employee>::iterator b) {
         string aStr = addStr(a->employeeNum);
         string bStr = addStr(b->employeeNum);
         return stoi(aStr) > stoi(bStr);
     }
 };
-using employeeIter = vector<Employee>::iterator;
+using employeeIter = list<Employee>::iterator;
 using prioirtyQ = priority_queue<employeeIter, vector<employeeIter>, cmp>;
 
 static vector<string> split(string input, char delimiter) {
