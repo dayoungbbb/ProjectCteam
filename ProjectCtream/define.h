@@ -13,9 +13,8 @@ using namespace std;
 #define NameSize 2
 #define BirthdaySize 8
 #define INVALID -1
-#define PRINT 1
-#define BLANK 0
-#define OTHERCOLUMN 1
+#define ENABLE 1
+#define DISABLE 0
 
 enum CmdType {
     ADD = 0,
@@ -27,7 +26,8 @@ enum CmdType {
 
 enum EColumn {
     EMPLOYEENUM = 0,
-    NAME,
+    OTHERCOLUMN,
+    NAME = OTHERCOLUMN,
     CL,
     PHONENUM,
     BIRTHDAY,

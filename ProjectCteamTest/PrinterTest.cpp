@@ -61,7 +61,7 @@ TEST_F(PrinterTest, printTest) {
     searchList.push_back("11765432");
     searchList.push_back("07123456");
     searchList.push_back("21330234");
-    SchCmd schCmd = {PRINT, NAME, "DSRC DSF"};
+    SchCmd schCmd = {ENABLE, NAME, "DSRC DSF"};
     printer->print(DEL, &schCmd, searchList, isFirst);
 
     EXPECT_EQ(getOutputFileCheckSum("output_PrinterTest.txt"), getOutputFileCheckSum("golden_PrinterTest_2.txt"));

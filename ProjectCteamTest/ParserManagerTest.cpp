@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "../ProjectCtream/ParseManager.cpp"
+#include "../ProjectCtream/ParserManager.cpp"
 
 TEST(CmdParameterTest, addTest) {
     CmdParameter* cmdParameter = new CmdParameter();
@@ -19,7 +19,7 @@ TEST(CmdParameterTest, delTest) {
     int isValid = cmdParameter->parse(string("DEL, , , ,name,KYUMOK KIM"));
     SchCmd* schCmd = (SchCmd*)cmdParameter->getCmdString();
     EXPECT_EQ(true, isValid);
-    EXPECT_EQ(schCmd->printOption, BLANK);
+    EXPECT_EQ(schCmd->printOption, DISABLE);
     EXPECT_EQ(schCmd->condType, NAME);
     EXPECT_EQ(schCmd->cond, "KYUMOK KIM");
     delete cmdParameter;
@@ -30,7 +30,7 @@ TEST(CmdParameterTest, modTest) {
     int isValid = cmdParameter->parse(string("MOD,-p, , ,name,KYUMOK KIM,cl,CL3"));
     ModCmd* modCmd = (ModCmd*)cmdParameter->getCmdString();
     EXPECT_EQ(true, isValid);
-    EXPECT_EQ(modCmd->schCmd.printOption, PRINT);
+    EXPECT_EQ(modCmd->schCmd.printOption, ENABLE);
     EXPECT_EQ(modCmd->schCmd.condType, NAME);
     EXPECT_EQ(modCmd->schCmd.cond, "KYUMOK KIM");
     EXPECT_EQ(modCmd->condType, CL);
@@ -43,7 +43,7 @@ TEST(CmdParameterTest, schTest) {
     int isValid = cmdParameter->parse(string("SCH, , , ,name,KYUMOK KIM"));
     SchCmd* schCmd = (SchCmd*)cmdParameter->getCmdString();
     EXPECT_EQ(true, isValid);
-    EXPECT_EQ(schCmd->printOption, BLANK);
+    EXPECT_EQ(schCmd->printOption, DISABLE);
     EXPECT_EQ(schCmd->condType, NAME);
     EXPECT_EQ(schCmd->cond, "KYUMOK KIM");
     delete cmdParameter;

@@ -35,7 +35,7 @@ void Printer::print(int cmdType, void* cmdString, vector<string> searchList, boo
 	}
 	SchCmd* schCmd = (SchCmd*)cmdString;
 	int writeCount = 0;
-	if (schCmd->printOption == PRINT) {
+	if (schCmd->printOption == ENABLE) {
 		auto comp = [](string a, string b) {
 			cmp cmp;
 			string aStr = cmp.addStr(a);
