@@ -1,4 +1,4 @@
-#include "ParseManager.h"
+#include "ParserManager.h"
 #include "Define.h"
 
 int CmdParameter::parse(string cmd) {
@@ -11,12 +11,12 @@ int CmdParameter::parse(string cmd) {
 
     if (cmdType == INVALID) return false;
     if (cmdList.size() != cmdParameterSize[cmdType]) return false;
-    if (!(pParseCmdParameter[cmdType]->parseCmdParameter(cmdList))) return false;
+    if (!(pParser[cmdType]->operateParser(cmdList))) return false;
     return true;
 }
 
 void* CmdParameter::getCmdString() const {
-    return pParseCmdParameter[cmdType]->getCmdString();
+    return pParser[cmdType]->getCmdString();
 }
 
 int CmdParameter::getCmdType() const {

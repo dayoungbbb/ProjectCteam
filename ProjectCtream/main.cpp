@@ -3,7 +3,7 @@
 
 #include "Define.h"
 #include "Printer.h"
-#include "ParseManager.h"
+#include "ParserManager.h"
 #include "Operator.h"
 #include "Searcher.h"
 #include "DataBaseManager.h"

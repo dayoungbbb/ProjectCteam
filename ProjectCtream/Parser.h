@@ -3,9 +3,9 @@
 #include <vector>
 #include "Define.h"
 
-class ParseCmdParameter {
+class Parser {
 public:
-    virtual int parseCmdParameter(const vector<string>& cmdList) = 0;
+    virtual int operateParser(const vector<string>& cmdList) = 0;
     virtual void* getCmdString() = 0;
 
 protected:
@@ -52,6 +52,7 @@ protected:
         return false;
     }
 
+private:
     vector<string> splitString(string input, char delimiter) {
         vector<string> answer;
         stringstream ss(input);
@@ -63,14 +64,14 @@ protected:
 
         return answer;
     }
-private:
+
     virtual int isValidCmdList(const vector<string>& cmdList) = 0;
 };
-class ParseOperatorParameter : public ParseCmdParameter {
+class OperatorParser : public Parser {
 protected:
     int getFirstOpt(const string& str) {
-        if (str == " ") return BLANK;
-        if (str == "-p") return PRINT;
+        if (str == " ") return DISABLE;
+        if (str == "-p") return ENABLE;
         return INVALID;
     }
 
@@ -108,12 +109,13 @@ protected:
     }
 };
 
-class ParseAddCmdParameter : public ParseCmdParameter {
+class AddParser : public Parser {
 public:
-    int parseCmdParameter(const vector<string>& cmdList) override {
+    int operateParser(const vector<string>& cmdList) override {
         if (!isValidCmdList(cmdList)) return false;
         return true;
     }
+
     void* getCmdString() {
         return &employee;
     }
@@ -146,12 +148,13 @@ private:
     Employee employee;
 };
 
-class ParseDelCmdParameter : public ParseOperatorParameter {
+class DelParser : public OperatorParser {
 public:
-    int parseCmdParameter(const vector<string>& cmdList) override {
+    int operateParser(const vector<string>& cmdList) override {
         if (!isValidCmdList(cmdList)) return false;
         return true;
     }
+
     void* getCmdString() {
         return &schCmd;
     }
@@ -173,15 +176,18 @@ private:
 private:
     SchCmd schCmd;
 };
-class ParseSchCmdParameter : public ParseOperatorParameter {
+
+class SchParser : public OperatorParser {
 public:
-    int parseCmdParameter(const vector<string>& cmdList) override {
+    int operateParser(const vector<string>& cmdList) override {
         if (!isValidCmdList(cmdList)) return false;
         return true;
     }
+
     void* getCmdString() {
         return &schCmd;
     }
+
 private:
     int isValidCmdList(const vector<string>& cmdList) override {
         vector<string> strList;
@@ -195,15 +201,18 @@ private:
         schCmd.cond = cmdList[5];
         return true;
     }
+
 private:
     SchCmd schCmd;
 };
-class ParseModCmdParameter : public ParseOperatorParameter {
+
+class ModParser : public OperatorParser {
 public:
-    int parseCmdParameter(const vector<string>& cmdList) override {
+    int operateParser(const vector<string>& cmdList) override {
         if (!isValidCmdList(cmdList)) return false;
         return true;
     }
+
     void* getCmdString() {
         return &modCmd;
     }

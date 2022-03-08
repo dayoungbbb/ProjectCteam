@@ -3,19 +3,22 @@
 #include <string>
 #include <vector>
 #include "Define.h"
-#include "ParseCmdParameter.h"
+#include "Parser.h"
 using namespace std;
 
 class CmdParameter {
 public:
     CmdParameter() {
-        pParseCmdParameter[ADD] = new ParseAddCmdParameter();
-        pParseCmdParameter[DEL] = new ParseDelCmdParameter();
-        pParseCmdParameter[SCH] = new ParseSchCmdParameter();
-        pParseCmdParameter[MOD] = new ParseModCmdParameter();
+        pParser[ADD] = new AddParser();
+        pParser[DEL] = new DelParser();
+        pParser[SCH] = new SchParser();
+        pParser[MOD] = new ModParser();
     }
     ~CmdParameter() {
-        if (pParseCmdParameter) delete pParseCmdParameter;
+        if (pParser[ADD]) delete pParser[ADD];
+        if (pParser[DEL]) delete pParser[DEL];
+        if (pParser[SCH]) delete pParser[SCH];
+        if (pParser[MOD]) delete pParser[MOD];
     }
     int parse(string cmd);
     void* getCmdString() const;
@@ -27,6 +30,6 @@ private:
 private:
     int cmdType;
     int cmdParameterSize[MAX_CMDTYPE] = { 10, 6, 6, 8 };
-    ParseCmdParameter* pParseCmdParameter[MAX_CMDTYPE];
+    Parser* pParser[MAX_CMDTYPE];
     vector<string> cmdList;
 };

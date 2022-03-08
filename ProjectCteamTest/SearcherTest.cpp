@@ -76,52 +76,52 @@ protected:
 };
 
 TEST_F(SearcherTest, nameSearchTest) {
-	const SchCmd cmdString = { BLANK, NAME, "VXIHXOTH JHOP" };
+	const SchCmd cmdString = { DISABLE, NAME, "VXIHXOTH JHOP" };
 	Searcher* searcher = searcherManager->getSearcher(&cmdString);
 	vector<string> iter = searcher->search(&cmdString);
 	EXPECT_EQ("15123099", iter[0]);
 }
 TEST_F(SearcherTest, nameOptionLSearchTest) {
-	const SchCmd cmdString = { BLANK, NAME_LAST, "NTAWR" };
+	const SchCmd cmdString = { DISABLE, NAME_LAST, "NTAWR" };
 	Searcher* searcher = searcherManager->getSearcher(&cmdString);
 	vector<string> iter = searcher->search(&cmdString);
 	EXPECT_EQ("60112609", iter[0]);
 }
 TEST_F(SearcherTest, nameOptionFSearchTest) {
-	const SchCmd cmdString = { BLANK, NAME_FIRST, "FB" };
+	const SchCmd cmdString = { DISABLE, NAME_FIRST, "FB" };
 	Searcher* searcher = searcherManager->getSearcher(&cmdString);
 	vector<string> iter = searcher->search(&cmdString);
 	EXPECT_EQ("60112609", iter[0]);
 }
 
 TEST_F(SearcherTest, phoneNumOptionLSearchTest) {
-	const SchCmd cmdString = { BLANK, PHONENUM_MIDDLE, "5645" };
+	const SchCmd cmdString = { DISABLE, PHONENUM_MIDDLE, "5645" };
 	Searcher* searcher = searcherManager->getSearcher(&cmdString);
 	vector<string> iter = searcher->search(&cmdString);
 	EXPECT_EQ("60112609", iter[0]);
 }
 TEST_F(SearcherTest, phoneNumOptionFSearchTest) {
-	const SchCmd cmdString = { BLANK, PHONENUM_BACK, "6122" };
+	const SchCmd cmdString = { DISABLE, PHONENUM_BACK, "6122" };
 	Searcher* searcher = searcherManager->getSearcher(&cmdString);
 	vector<string> iter = searcher->search(&cmdString);
 	EXPECT_EQ("60112609", iter[0]);
 }
 
 TEST_F(SearcherTest, birthdayOptionYSearchTest) {
-	const SchCmd cmdString = { BLANK, BIRTHDAY_YEAR, "1977" };
+	const SchCmd cmdString = { DISABLE, BIRTHDAY_YEAR, "1977" };
 	Searcher* searcher = searcherManager->getSearcher(&cmdString);
 	vector<string> iter = searcher->search(&cmdString);
 	EXPECT_EQ(2, iter.size());
 }
 TEST_F(SearcherTest, birthdayOptionMSearchTest) {
-	const SchCmd cmdString = { BLANK, BIRTHDAY_MONTH, "12" };
+	const SchCmd cmdString = { DISABLE, BIRTHDAY_MONTH, "12" };
 	Searcher* searcher = searcherManager->getSearcher(&cmdString);
 	vector<string> iter = searcher->search(&cmdString);
 	EXPECT_EQ(2, iter.size());
 }
 
 TEST_F(SearcherTest, birthdayOptionDSearchTest) {
-	const SchCmd cmdString = { BLANK, BIRTHDAY_DATE, "11" };
+	const SchCmd cmdString = { DISABLE, BIRTHDAY_DATE, "11" };
 	Searcher* searcher = searcherManager->getSearcher(&cmdString);
 	vector<string> iter = searcher->search(&cmdString);
 	EXPECT_EQ(2, iter.size());
