@@ -2,7 +2,7 @@
 #include <string>
 #include <fstream>
 #include <algorithm>
-#include "define.h"
+#include "Define.h"
 #include "Printer.h"
 
 static constexpr int MAX_PRINT_CNT = 5;

@@ -2,9 +2,9 @@
 #include <vector>
 #include <fstream>
 #include <list>
-#include "define.h"
+#include "Define.h"
 #include "Printer.h"
-#include "cmdParameter.h"
+#include "ParseManager.h"
 #include "Operator.h"
 #include "Searcher.h"
 #include "DataBaseManager.h"

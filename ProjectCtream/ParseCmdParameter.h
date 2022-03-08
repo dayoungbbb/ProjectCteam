@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
-#include "define.h"
+#include "Define.h"
 
 class ParseCmdParameter {
 public:
