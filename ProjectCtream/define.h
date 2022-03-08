@@ -42,14 +42,6 @@ enum EColumn {
     MAX_COLUMNTYPE = 13
 };
 
-static const string CmdTypeStr[] = {
-    "ADD",
-    "DEL",
-    "SCH",
-    "MOD",
-    "INVALID",
-};
-
 struct Name {
     string firstName;
     string lastName;

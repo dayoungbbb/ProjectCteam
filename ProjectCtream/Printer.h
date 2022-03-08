@@ -18,6 +18,14 @@ struct cmp {
     }
 };
 
+const string CmdTypeStr[] = {
+    "ADD",
+    "DEL",
+    "SCH",
+    "MOD",
+    "INVALID",
+};
+
 class Printer {
 public:
 	Printer(map<string, Employee>& dataBase_);
