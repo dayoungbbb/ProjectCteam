@@ -53,7 +53,7 @@ TEST_F(PrinterTest, printTest) {
 
     bool isFirst = true;
     printer->setOutputFileName("output_PrinterTest.txt");
-    printer->print(MOD, " ", searchList, isFirst);
+    printer->print(MOD, " ", searchList);
 
     EXPECT_EQ(getOutputFileCheckSum("output_PrinterTest.txt"), getOutputFileCheckSum("golden_PrinterTest_1.txt"));
 
@@ -62,7 +62,7 @@ TEST_F(PrinterTest, printTest) {
     searchList.insert("07123456");
     searchList.insert("21330234");
     SchCmd schCmd = { ENABLE, NAME, "DSRC DSF" };
-    printer->print(DEL, &schCmd, searchList, isFirst);
+    printer->print(DEL, &schCmd, searchList);
 
     EXPECT_EQ(getOutputFileCheckSum("output_PrinterTest.txt"), getOutputFileCheckSum("golden_PrinterTest_2.txt"));
 }

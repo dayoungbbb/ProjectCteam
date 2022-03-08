@@ -58,8 +58,6 @@ void DataBaseManager::operate(std::string inputFileName, std::string outputFileN
 		throw invalid_argument("input file open failed");
 	}
 
-	bool isFirst = true;
-	int cnt = 0;
 	while (!inputFile.eof()) {
 		string cmd;
 		getline(inputFile, cmd);
@@ -76,7 +74,7 @@ void DataBaseManager::operate(std::string inputFileName, std::string outputFileN
 		operateSearcher(cmdType, cmdString, searchList);
 
 		printer->setOutputFileName(outputFileName);
-		printer->print(cmdType, cmdString, searchList, isFirst);
+		printer->print(cmdType, cmdString, searchList);
 
 		operateOperator(cmdType, cmdString, searchList);
 	}

@@ -30,7 +30,7 @@ class Printer {
 public:
 	Printer(map<string, Employee>& dataBase_);
 	void setOutputFileName(const std::string& outputFileName);
-	void print(int cmdType, void* cmdString, unordered_set<string>& searchList, bool &isFirst);
+	void print(int cmdType, void* cmdString, unordered_set<string>& searchList);
 
 private:
     string addStr(string str) {
@@ -42,7 +42,8 @@ private:
         else
             return ret;
     }
-
+    string getPrintOptionString(int cmdType, unordered_set<string>& searchList);
 	std::string outputFileName;
 	map<string, Employee>& dataBase;
+    bool firstWrite;
 };
