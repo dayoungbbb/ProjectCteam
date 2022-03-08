@@ -3,7 +3,6 @@
 #include <fstream>
 #include <list>
 #include "define.h"
-#include "Employee.h"
 #include "Printer.h"
 #include "cmdParameter.h"
 #include "Operator.h"

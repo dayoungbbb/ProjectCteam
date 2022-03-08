@@ -1,5 +1,4 @@
 #pragma once
-#include "Employee.h"
 #include "cmdParameter.h"
 
 class Operator {

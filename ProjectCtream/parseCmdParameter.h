@@ -2,8 +2,7 @@
 #include <string>
 #include <vector>
 #include "define.h"
-#include "Employee.h"
-using namespace std;
+
 class ParseCmdParameter {
 public:
     virtual int parseCmdParameter(const vector<string>& cmdList) = 0;

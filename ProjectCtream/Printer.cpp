@@ -3,7 +3,6 @@
 #include <fstream>
 #include <algorithm>
 #include "define.h"
-#include "Employee.h"
 #include "Printer.h"
 
 static constexpr int MAX_PRINT_CNT = 5;
