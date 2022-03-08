@@ -1,8 +1,6 @@
 #pragma once
-#include "Employee.h"
 #include "define.h"
 #include <queue>
-
 
 class Searcher {
 public:
@@ -46,5 +44,4 @@ public:
 
 private:
     Searcher* searcher_[2];
-
 };
