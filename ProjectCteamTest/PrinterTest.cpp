@@ -40,16 +40,16 @@ protected:
     // variables
     map<string, Employee> dataBase;
     vector<multimap<string, string>> columnMap;
-    Printer *printer;
+    Printer* printer;
 };
 
 TEST_F(PrinterTest, printTest) {
 
-    vector<string> searchList;
+    unordered_set<string> searchList;
 
-    searchList.push_back("13013973");
-    searchList.push_back("99765451");
-    searchList.push_back("18001234");
+    searchList.insert("13013973");
+    searchList.insert("99765451");
+    searchList.insert("18001234");
 
     bool isFirst = true;
     printer->setOutputFileName("output_PrinterTest.txt");
@@ -57,11 +57,11 @@ TEST_F(PrinterTest, printTest) {
 
     EXPECT_EQ(getOutputFileCheckSum("output_PrinterTest.txt"), getOutputFileCheckSum("golden_PrinterTest_1.txt"));
 
-    searchList.push_back("98123456");
-    searchList.push_back("11765432");
-    searchList.push_back("07123456");
-    searchList.push_back("21330234");
-    SchCmd schCmd = {ENABLE, NAME, "DSRC DSF"};
+    searchList.insert("98123456");
+    searchList.insert("11765432");
+    searchList.insert("07123456");
+    searchList.insert("21330234");
+    SchCmd schCmd = { ENABLE, NAME, "DSRC DSF" };
     printer->print(DEL, &schCmd, searchList, isFirst);
 
     EXPECT_EQ(getOutputFileCheckSum("output_PrinterTest.txt"), getOutputFileCheckSum("golden_PrinterTest_2.txt"));

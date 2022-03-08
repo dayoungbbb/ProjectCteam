@@ -5,12 +5,12 @@ class OperatorTest : public ::testing::Test
 {
 public:
 	OperatorTest() {
-    }
-    ~OperatorTest() {
-    }
+	}
+	~OperatorTest() {
+	}
 protected:
-    virtual void SetUp() override
-    {
+	virtual void SetUp() override
+	{
 		operatorManager = new OperatorManager{ &dataBase, &columnMap };
 
 		columnMap.resize(MAX_COLUMNTYPE);
@@ -23,56 +23,59 @@ protected:
 			dataBase[employee.employeeNum] = employee;
 		}
 
-		(columnMap)[NAME].insert(make_pair("VXIHXOTH JHOP", "15123099"));
-		(columnMap)[CL].insert(make_pair("CL3", "15123099"));
-		(columnMap)[PHONENUM].insert(make_pair("010-3112-2609", "15123099"));
-		(columnMap)[BIRTHDAY].insert(make_pair("19771211", "15123099"));
-		(columnMap)[CERTI].insert(make_pair("ADV", "15123099"));
-		(columnMap)[NAME_FIRST].insert(make_pair("VXIHXOTH", "15123099"));
-		(columnMap)[NAME_LAST].insert(make_pair("JHOP", "15123099"));
-		(columnMap)[PHONENUM_MIDDLE].insert(make_pair("3112", "15123099"));
-		(columnMap)[PHONENUM_BACK].insert(make_pair("2609", "15123099"));
-		(columnMap)[BIRTHDAY_YEAR].insert(make_pair("1977", "15123099"));
-		(columnMap)[BIRTHDAY_MONTH].insert(make_pair("12", "15123099"));
-		(columnMap)[BIRTHDAY_DATE].insert(make_pair("11", "15123099"));
+		(columnMap)[EMPLOYEENUM]["15123099"].insert("15123099");
+		(columnMap)[NAME]["VXIHXOTH JHOP"].insert("15123099");
+		(columnMap)[CL]["CL3"].insert("15123099");
+		(columnMap)[PHONENUM]["010-3112-2609"].insert("15123099");
+		(columnMap)[BIRTHDAY]["19771211"].insert("15123099");
+		(columnMap)[CERTI]["ADV"].insert("15123099");
+		(columnMap)[NAME_FIRST]["VXIHXOTH"].insert("15123099");
+		(columnMap)[NAME_LAST]["JHOP"].insert("15123099");
+		(columnMap)[PHONENUM_MIDDLE]["3112"].insert("15123099");
+		(columnMap)[PHONENUM_BACK]["2609"].insert("15123099");
+		(columnMap)[BIRTHDAY_YEAR]["1977"].insert("15123099");
+		(columnMap)[BIRTHDAY_MONTH]["12"].insert("15123099");
+		(columnMap)[BIRTHDAY_DATE]["11"].insert("15123099");
 
-		(columnMap)[NAME].insert(make_pair("FB NTAWR", "17112609"));
-		(columnMap)[CL].insert(make_pair("CL4", "16119968"));
-		(columnMap)[PHONENUM].insert(make_pair("010-5645-6122", "16119968"));
-		(columnMap)[BIRTHDAY].insert(make_pair("19861203", "16119968"));
-		(columnMap)[CERTI].insert(make_pair("PRO", "16119968"));
-		(columnMap)[NAME_FIRST].insert(make_pair("FB", "16119968"));
-		(columnMap)[NAME_LAST].insert(make_pair("NTAWR", "16119968"));
-		(columnMap)[PHONENUM_MIDDLE].insert(make_pair("5645", "16119968"));
-		(columnMap)[PHONENUM_BACK].insert(make_pair("6122", "16119968"));
-		(columnMap)[BIRTHDAY_YEAR].insert(make_pair("1986", "16119968"));
-		(columnMap)[BIRTHDAY_MONTH].insert(make_pair("12", "16119968"));
-		(columnMap)[BIRTHDAY_DATE].insert(make_pair("03", "16119968"));
+		(columnMap)[EMPLOYEENUM]["17112609"].insert("17112609");
+		(columnMap)[NAME]["FB NTAWR"].insert("17112609");
+		(columnMap)[CL]["CL4"].insert("17112609");
+		(columnMap)[PHONENUM]["010-5645-6122"].insert("17112609");
+		(columnMap)[BIRTHDAY]["19861203"].insert("17112609");
+		(columnMap)[CERTI]["PRO"].insert("17112609");
+		(columnMap)[NAME_FIRST]["FB"].insert("17112609");
+		(columnMap)[NAME_LAST]["NTAWR"].insert("17112609");
+		(columnMap)[PHONENUM_MIDDLE]["5645"].insert("17112609");
+		(columnMap)[PHONENUM_BACK]["6122"].insert("17112609");
+		(columnMap)[BIRTHDAY_YEAR]["1986"].insert("17112609");
+		(columnMap)[BIRTHDAY_MONTH]["12"].insert("17112609");
+		(columnMap)[BIRTHDAY_DATE]["03"].insert("17112609");
 
-		(columnMap)[NAME].insert(make_pair("FB NTAWR", "16119968"));
-		(columnMap)[CL].insert(make_pair("CL2", "16119968"));
-		(columnMap)[PHONENUM].insert(make_pair("010-5644-6121", "16119968"));
-		(columnMap)[BIRTHDAY].insert(make_pair("19920428", "16119968"));
-		(columnMap)[CERTI].insert(make_pair("PRO", "16119968"));
-		(columnMap)[NAME_FIRST].insert(make_pair("FB", "16119968"));
-		(columnMap)[NAME_LAST].insert(make_pair("NTAWR", "16119968"));
-		(columnMap)[PHONENUM_MIDDLE].insert(make_pair("5644", "16119968"));
-		(columnMap)[PHONENUM_BACK].insert(make_pair("6121", "16119968"));
-		(columnMap)[BIRTHDAY_YEAR].insert(make_pair("1986", "16119968"));
-		(columnMap)[BIRTHDAY_MONTH].insert(make_pair("04", "16119968"));
-		(columnMap)[BIRTHDAY_DATE].insert(make_pair("28", "16119968"));
-    }
+		(columnMap)[EMPLOYEENUM]["16119968"].insert("16119968");
+		(columnMap)[NAME]["FB NTAWR"].insert("16119968");
+		(columnMap)[CL]["CL2"].insert("16119968");
+		(columnMap)[PHONENUM]["010-5644-6121"].insert("16119968");
+		(columnMap)[BIRTHDAY]["19920428"].insert("16119968");
+		(columnMap)[CERTI]["PRO"].insert("16119968");
+		(columnMap)[NAME_FIRST]["FB"].insert("16119968");
+		(columnMap)[NAME_LAST]["NTAWR"].insert("16119968");
+		(columnMap)[PHONENUM_MIDDLE]["5644"].insert("16119968");
+		(columnMap)[PHONENUM_BACK]["6121"].insert("16119968");
+		(columnMap)[BIRTHDAY_YEAR]["1992"].insert("16119968");
+		(columnMap)[BIRTHDAY_MONTH]["04"].insert("16119968");
+		(columnMap)[BIRTHDAY_DATE]["28"].insert("16119968");
+	}
 
-    virtual void TearDown() override
-    {
-        dataBase.clear();
-    }
+	virtual void TearDown() override
+	{
+		dataBase.clear();
+	}
 
 protected:
-	vector<string> searchQ;
+	unordered_set<string> searchQ;
 
 	map<string, Employee> dataBase;
-	vector<multimap<string, string>> columnMap;
+	vector<map<string, unordered_set<string>>> columnMap;
 
 	OperatorManager* operatorManager;
 };
@@ -82,8 +85,8 @@ TEST_F(OperatorTest, ModTest) {
 
 	/* cmd : MOD, -p, , , name, FB NTAWR, birthday, 20050520 */
 	searchQ.clear();
-    searchQ.push_back("17112609");
-	searchQ.push_back("16119968");
+	searchQ.insert("17112609");
+	searchQ.insert("16119968");
 
 	string answer = "16119968,FB NTAWR,CL2,010-5644-6121,19920428,EXP\n17112609,FB NTAWR,CL4,010-5645-6122,19861203,EXP";
 	ModCmd changeInfo;
@@ -96,7 +99,7 @@ TEST_F(OperatorTest, ModTest) {
 	auto i = 0;
 	for (auto record : dataBase) {
 
-		if(record.second.name.firstName == "FB" && record.second.name.lastName == "NTAWR"){
+		if (record.second.name.firstName == "FB" && record.second.name.lastName == "NTAWR") {
 			if (i > 0) {
 				result += "\n";
 			}
@@ -134,7 +137,7 @@ TEST_F(OperatorTest, AddTest) {
 	changeInfo.name.firstName = "SRERLALH";
 	changeInfo.name.lastName = "HMEF";
 	changeInfo.cl = "CL2";
-	changeInfo.phoneNum.middle = "3091"; 
+	changeInfo.phoneNum.middle = "3091";
 	changeInfo.phoneNum.last = "9521";
 	changeInfo.bday.year = "1964";
 	changeInfo.bday.month = "09";
@@ -166,13 +169,13 @@ TEST_F(OperatorTest, DelFunc) {
 	Operator* delOperator = operatorManager->getOperator(DEL);
 	/* cmd : del, , , , name, FB NTAWR */
 	searchQ.clear();
-	searchQ.push_back("17112609");
-	searchQ.push_back("16119968");
+	searchQ.insert("17112609");
+	searchQ.insert("16119968");
 
 	SchCmd changeInfo;
 	delOperator->operate(searchQ, &changeInfo);
 	bool bResult = true;
-	
+
 	for (auto record : dataBase) {
 		if (record.second.name.firstName == "FB" && record.second.name.lastName == "NTAWR") {
 			bResult = false;
