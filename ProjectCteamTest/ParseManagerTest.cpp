@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "../ProjectCtream/cmdParameter.cpp"
+#include "../ProjectCtream/ParseManager.cpp"
 
 TEST(CmdParameterTest, addTest) {
     CmdParameter* cmdParameter = new CmdParameter();

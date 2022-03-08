@@ -1,5 +1,5 @@
-#include "cmdParameter.h"
-#include "define.h"
+#include "ParseManager.h"
+#include "Define.h"
 
 int CmdParameter::parse(string cmd) {
     cmdList = splitString(cmd, ',');

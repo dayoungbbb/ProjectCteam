@@ -1,5 +1,5 @@
 #pragma once
-#include "cmdParameter.h"
+#include "ParseManager.h"
 
 class Operator {
 public:

@@ -2,8 +2,8 @@
 #include <sstream>
 #include <string>
 #include <vector>
-#include "define.h"
-#include "parseCmdParameter.h"
+#include "Define.h"
+#include "ParseCmdParameter.h"
 using namespace std;
 
 class CmdParameter {
