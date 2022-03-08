@@ -15,7 +15,7 @@ void Printer::setOutputFileName(const std::string &outputFileName) {
 	this->outputFileName = outputFileName;
 }
 
-void Printer::print(int cmdType, void* cmdString, vector<string> searchList, bool &isFirst) {
+void Printer::print(int cmdType, void* cmdString, unordered_set<string>& searchList, bool &isFirst) {
 	if (cmdType == ADD) {
 		return;
 	}
@@ -36,23 +36,21 @@ void Printer::print(int cmdType, void* cmdString, vector<string> searchList, boo
 	SchCmd* schCmd = (SchCmd*)cmdString;
 	int writeCount = 0;
 	if (schCmd->printOption == ENABLE) {
-		auto comp = [](string a, string b) {
-			cmp cmp;
-			string aStr = cmp.addStr(a);
-			string bStr = cmp.addStr(b);
+		set<string> orderedList;
+		for (auto a : searchList) {
+			orderedList.insert(addStr(a));
+		}
 
-			return stoi(aStr) < stoi(bStr);
-		};
-		sort(searchList.begin(),searchList.end(), comp);
+		for (auto searchList : orderedList) {
+			auto employeeNum = searchList.substr(2, 8);
 
-		for (auto searchList : searchList) {
 			result += CmdTypeStr[cmdType] + ",";
-			result += dataBase[searchList].employeeNum + ",";
-			result += dataBase[searchList].name.firstName + " " + dataBase[searchList].name.lastName + ",";
-			result += dataBase[searchList].cl + ",";
-			result += "010-" + dataBase[searchList].phoneNum.middle + "-" + dataBase[searchList].phoneNum.last + ",";
-			result += dataBase[searchList].bday.year + dataBase[searchList].bday.month + dataBase[searchList].bday.day + ",";
-			result += dataBase[searchList].certi + "\n";
+			result += dataBase[employeeNum].employeeNum + ",";
+			result += dataBase[employeeNum].name.firstName + " " + dataBase[employeeNum].name.lastName + ",";
+			result += dataBase[employeeNum].cl + ",";
+			result += "010-" + dataBase[employeeNum].phoneNum.middle + "-" + dataBase[employeeNum].phoneNum.last + ",";
+			result += dataBase[employeeNum].bday.year + dataBase[employeeNum].bday.month + dataBase[employeeNum].bday.day + ",";
+			result += dataBase[employeeNum].certi + "\n";
 
 			writeCount++;
 			if (writeCount == MAX_PRINT_CNT) break;

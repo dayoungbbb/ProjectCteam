@@ -1,29 +1,22 @@
 #include "Searcher.h"
-vector<string> EmployeeNumSearcher::search(const void* cmdString) const
+void EmployeeNumSearcher::search(unordered_set<string>& searchQ, const void* cmdString) const
 {
-    vector<string> searchResult;
     SchCmd* schCmd = (SchCmd*)cmdString;
     string key = schCmd->cond;
     if ((*pDataBase_).count(key)) {
-        searchResult.emplace_back(key);
+        searchQ.insert(key);
     }
-
-    return searchResult;
 }
 
-vector<string> ColumnSearcher::search(const void* cmdString) const
+void ColumnSearcher::search(unordered_set<string>& searchQ, const void* cmdString) const
 {
-    vector<string> searchResult;
     SchCmd* schCmd = (SchCmd*)cmdString;
     string key = schCmd->cond;
 
     if ((*columeMap_)[schCmd->condType].count(key)) {
-        for (auto it = (*columeMap_)[schCmd->condType].lower_bound(key); it != (*columeMap_)[schCmd->condType].upper_bound(key); it++) {
-            searchResult.emplace_back(it->second);
-        }
+        auto iter = (*columeMap_)[schCmd->condType].find(key);
+        searchQ = iter->second;
     }
-
-    return searchResult;
 }
 
 Searcher* SearcherManager::getSearcher(const void* cmdString) const

@@ -4,34 +4,34 @@
 
 class Searcher {
 public:
-    Searcher(map<string, Employee>* pDataBase, vector<multimap<string, string>>* columeMap) : pDataBase_(pDataBase), columeMap_(columeMap) {}
+    Searcher(map<string, Employee>* pDataBase, vector<map<string, unordered_set<string>>>* columeMap) : pDataBase_(pDataBase), columeMap_(columeMap) {}
     virtual ~Searcher() {}
-    virtual vector<string> search(const void* cmdString) const = 0;
+    virtual void search(unordered_set<string>& searchQ, const void* cmdString) const = 0;
 
 protected:
     map<string, Employee>* pDataBase_;
-    vector<multimap<string, string>>* columeMap_;
+    vector<map<string, unordered_set<string>>>* columeMap_;
 };
 
 class EmployeeNumSearcher : public Searcher {
 public:
-    EmployeeNumSearcher(map<string, Employee>* pDataBase, vector<multimap<string, string>>* columeMap) : Searcher(pDataBase, columeMap) {}
+    EmployeeNumSearcher(map<string, Employee>* pDataBase, vector<map<string, unordered_set<string>>>* columeMap) : Searcher(pDataBase, columeMap) {}
     ~EmployeeNumSearcher() {}
 private:
-    virtual vector<string> search(const void* cmdString) const override;
+    virtual void search(unordered_set<string>& searchQ, const void* cmdString) const override;
 };
 
 class ColumnSearcher : public Searcher {
 public:
-    ColumnSearcher(map<string, Employee>* pDataBase, vector<multimap<string, string>>* columeMap) : Searcher(pDataBase, columeMap) {}
+    ColumnSearcher(map<string, Employee>* pDataBase, vector<map<string, unordered_set<string>>>* columeMap) : Searcher(pDataBase, columeMap) {}
     ~ColumnSearcher() {}
 private:
-    virtual vector<string> search(const void* cmdString) const override;
+    virtual void search(unordered_set<string>& searchQ, const void* cmdString) const override;
 };
 
 class SearcherManager {
 public:
-    SearcherManager(map<string, Employee>* pDataBase, vector<multimap<string, string>>* columeMap) {
+    SearcherManager(map<string, Employee>* pDataBase, vector<map<string, unordered_set<string>>>* columeMap) {
         searcher_[EMPLOYEENUM] = new EmployeeNumSearcher(pDataBase, columeMap);
         searcher_[OTHERCOLUMN] = new ColumnSearcher(pDataBase, columeMap);
     }

@@ -26,7 +26,7 @@ DataBaseManager::~DataBaseManager() {
 	printer = nullptr;
 }
 
-void DataBaseManager::operateSearcher(int cmdType, const void* cmdString, vector<string> &searchList) {
+void DataBaseManager::operateSearcher(int cmdType, const void* cmdString, unordered_set<string> &searchList) {
 	if (cmdType == ADD)
 		return;
 
@@ -34,10 +34,10 @@ void DataBaseManager::operateSearcher(int cmdType, const void* cmdString, vector
 		throw invalid_argument("dataBaseSearcher is NULL");
 	}
 
-	searchList = (searcherManager->getSearcher(cmdString))->search(cmdString);
+	(searcherManager->getSearcher(cmdString))->search(searchList, cmdString);
 }
 
-void DataBaseManager::operateOperator(int cmdType, void* cmdString, vector<string>& searchList) {
+void DataBaseManager::operateOperator(int cmdType, void* cmdString, unordered_set<string>& searchList) {
 	if (cmdType == SCH)
 		return;
 
@@ -72,7 +72,7 @@ void DataBaseManager::operate(std::string inputFileName, std::string outputFileN
 		int cmdType = cmdParameter.getCmdType();
 		void* cmdString = cmdParameter.getCmdString();
 		
-		vector<string> searchList;
+		unordered_set<string> searchList;
 		operateSearcher(cmdType, cmdString, searchList);
 
 		printer->setOutputFileName(outputFileName);
