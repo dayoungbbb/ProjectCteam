@@ -8,6 +8,12 @@ using namespace std;
 
 class CmdParameter {
 public:
+    CmdParameter() {
+        pParseCmdParameter[ADD] = new ParseAddCmdParameter();
+        pParseCmdParameter[DEL] = new ParseDelCmdParameter();
+        pParseCmdParameter[SCH] = new ParseSchCmdParameter();
+        pParseCmdParameter[MOD] = new ParseModCmdParameter();
+    }
     ~CmdParameter() {
         if (pParseCmdParameter) delete pParseCmdParameter;
     }
@@ -21,6 +27,6 @@ private:
 private:
     int cmdType;
     int cmdParameterSize[MAX_CMDTYPE] = { 10, 6, 6, 8 };
-    ParseCmdParameter* pParseCmdParameter;
+    ParseCmdParameter* pParseCmdParameter[MAX_CMDTYPE];
     vector<string> cmdList;
 };
