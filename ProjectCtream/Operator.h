@@ -3,11 +3,11 @@
 
 class Operator {
 public:
-    Operator(map<string, Employee>* dataBase_, vector<multimap<string, string>>* columnMap_) {
+    Operator(map<string, Employee>* dataBase_, vector<map<string, unordered_set<string>>>* columnMap_) {
         dataBase = dataBase_;
         columnMap = columnMap_;
     }
-    virtual void operate(vector<string>& searchQ, void* cmdString) = 0;
+    virtual void operate(unordered_set<string>& searchQ, void* cmdString) = 0;
 
 protected:
     void addColumnMap(Employee& employee);
@@ -18,37 +18,37 @@ private:
 
 protected:
     map<string, Employee>* dataBase;
-    vector<multimap<string, string>>* columnMap;
+    vector<map<string, unordered_set<string>>>* columnMap;
 };
 
 class AddOperator : public Operator {
 public:
-    AddOperator(map<string, Employee>* dataBase, vector<multimap<string, string>>* columnMap) : Operator(dataBase, columnMap) {}
+    AddOperator(map<string, Employee>* dataBase, vector<map<string, unordered_set<string>>>* columnMap) : Operator(dataBase, columnMap) {}
 
 private:
-    virtual void operate(vector<string>& searchQ, void* cmdString) override;
+    virtual void operate(unordered_set<string>& searchQ, void* cmdString) override;
 };
 
 class ModOperator : public Operator {
 public:
-    ModOperator(map<string, Employee>* dataBase, vector<multimap<string, string>>* columnMap) : Operator(dataBase, columnMap) {}
+    ModOperator(map<string, Employee>* dataBase, vector<map<string, unordered_set<string>>>* columnMap) : Operator(dataBase, columnMap) {}
 
 private:
-    virtual void operate(vector<string>& searchQ, void* cmdString) override;
+    virtual void operate(unordered_set<string>& searchQ, void* cmdString) override;
     vector<string> split(string input, char delimiter);
 };
 
 class DelOperator : public Operator {
 public:
-    DelOperator(map<string, Employee>* dataBase, vector<multimap<string, string>>* columnMap) : Operator(dataBase, columnMap) {}
+    DelOperator(map<string, Employee>* dataBase, vector<map<string, unordered_set<string>>>* columnMap) : Operator(dataBase, columnMap) {}
 
 private:
-    virtual void operate(vector<string>& searchQ, void* cmdString) override;
+    virtual void operate(unordered_set<string>& searchQ, void* cmdString) override;
 };
 
 class OperatorManager {
 public:
-    OperatorManager(map<string, Employee>* dataBase, vector<multimap<string, string>>* columnMap) {
+    OperatorManager(map<string, Employee>* dataBase, vector<map<string, unordered_set<string>>>* columnMap) {
         myOperator[ADD] = new AddOperator(dataBase, columnMap);
         myOperator[MOD] = new ModOperator(dataBase, columnMap);
         myOperator[DEL] = new DelOperator(dataBase, columnMap);

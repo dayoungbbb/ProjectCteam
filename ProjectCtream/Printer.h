@@ -30,8 +30,19 @@ class Printer {
 public:
 	Printer(map<string, Employee>& dataBase_);
 	void setOutputFileName(const std::string& outputFileName);
-	void print(int cmdType, void* cmdString, vector<string> searchList, bool &isFirst);
+	void print(int cmdType, void* cmdString, unordered_set<string>& searchList, bool &isFirst);
+
 private:
+    string addStr(string str) {
+        string ret = "";
+        if (stoi(str.substr(0, 1)) <= 2)
+            return ret = "20" + str;
+        else if (stoi(str.substr(0, 1)) >= 6)
+            return ret = "19" + str;
+        else
+            return ret;
+    }
+
 	std::string outputFileName;
 	map<string, Employee>& dataBase;
 };
