@@ -139,13 +139,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DataBaseManager.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="ModOperator.cpp" />
-    <ClCompile Include="Search.cpp" />
+    <ClCompile Include="Operator.cpp" />
+    <ClCompile Include="ParserManager.cpp" />
+    <ClCompile Include="Printer.cpp" />
+    <ClCompile Include="Searcher.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Employee.h" />
-    <ClInclude Include="Search.h" />
+    <ClInclude Include="DataBaseManager.h" />
+    <ClInclude Include="Define.h" />
+    <ClInclude Include="Operator.h" />
+    <ClInclude Include="Parser.h" />
+    <ClInclude Include="ParserManager.h" />
+    <ClInclude Include="Printer.h" />
+    <ClInclude Include="Searcher.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
