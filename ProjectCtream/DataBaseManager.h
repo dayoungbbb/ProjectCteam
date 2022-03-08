@@ -13,8 +13,6 @@ private:
 	
 	OperatorManager* operatorManager;
 	SearcherManager* searcherManager;
-	Searcher* dataBaseSearcher;
-	Operator* dataBaseOperator;
 
 	Printer* printer;
 

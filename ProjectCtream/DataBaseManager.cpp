@@ -30,24 +30,22 @@ void DataBaseManager::operateSearcher(int cmdType, const void* cmdString, vector
 	if (cmdType == ADD)
 		return;
 
-	dataBaseSearcher = searcherManager->getSearcher(cmdString);
-	if (dataBaseSearcher == nullptr) {
+	if (searcherManager->getSearcher(cmdString) == nullptr) {
 		throw invalid_argument("dataBaseSearcher is NULL");
 	}
 
-	searchList = dataBaseSearcher->search(cmdString);
+	searchList = (searcherManager->getSearcher(cmdString))->search(cmdString);
 }
 
 void DataBaseManager::operateOperator(int cmdType, void* cmdString, vector<string>& searchList) {
 	if (cmdType == SCH)
 		return;
 
-	dataBaseOperator = operatorManager->getOperator(static_cast<CmdType>(cmdType));
-	if (dataBaseOperator == nullptr) {
+	if (operatorManager->getOperator(static_cast<CmdType>(cmdType)) == nullptr) {
 		throw invalid_argument("dataBaseSearcher is NULL");
 	}
 
-	dataBaseOperator->operate(searchList, cmdString);
+	(operatorManager->getOperator(static_cast<CmdType>(cmdType)))->operate(searchList, cmdString);
 }
 
 
